@@ -2,8 +2,12 @@
 #define ENEMIES_H
 #include "Ship.h"
 
-class Enemies : Ship
+class enemies : public ship
 {
+
+private:
+
+public:
 
 };
 
