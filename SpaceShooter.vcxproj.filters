@@ -45,4 +45,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\Player0.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\Player1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\Player2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
 </Project>
