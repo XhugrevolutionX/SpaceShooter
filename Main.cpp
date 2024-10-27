@@ -12,24 +12,6 @@ int main()
 
 	while (window.isOpen())
 	{
-		window.clear();
-
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-		{
-			test_player.movePlayer(sf::Vector2f(0, -1), dt);
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-		{
-			test_player.movePlayer(sf::Vector2f(0, 1), dt);
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-		{
-			test_player.movePlayer(sf::Vector2f(-1, 0), dt);
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-		{
-			test_player.movePlayer(sf::Vector2f(1, 0), dt);
-		}
 
 		while (window.pollEvent(event))
 		{
@@ -39,8 +21,26 @@ int main()
 			}
 		}
 
-		test_player.draw_ship(window, 0);
+		window.clear();
 
+		//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+		//{
+		//	test_player.movePlayer(sf::Vector2f(0, -1), dt);
+		//}
+		//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+		//{
+		//	test_player.movePlayer(sf::Vector2f(0, 1), dt);
+		//}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+		{
+			test_player.movePlayer(sf::Vector2f(-1, 0), dt);
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+		{
+			test_player.movePlayer(sf::Vector2f(1, 0), dt);
+		}
+
+		test_player.draw_ship(window, 0);
 
 		window.display();
 
