@@ -14,7 +14,6 @@ private:
 	player player;
 
 
-
 	sf::Clock clock;
 	float dt = 0.0f;
 public:

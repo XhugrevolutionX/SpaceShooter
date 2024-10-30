@@ -134,7 +134,6 @@
     <ClCompile Include="Projectile.cc" />
     <ClCompile Include="projectile_manager.cc" />
     <ClCompile Include="Ship.cc" />
-    <ClCompile Include="SpaceShooter.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Enemies.h" />
@@ -143,7 +142,6 @@
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="projectile_manager.h" />
     <ClInclude Include="Ship.h" />
-    <ClInclude Include="SpaceShooter.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Player0.png" />

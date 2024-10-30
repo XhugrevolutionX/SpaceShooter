@@ -52,7 +52,7 @@ void Game::Loop()
 		}
 
 
-		projectiles_.Refresh(dt);
+		projectiles_.Refresh(dt, window.getSize());
 
 		if(!is_moving)
 		{

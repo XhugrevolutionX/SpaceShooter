@@ -10,22 +10,21 @@ class Projectile : public sf::Drawable, public sf::Transformable
 {
 
 private:
-	static int counter;
+	static int counter_;
 	static sf::Texture texture_;
 
 	sf::Vector2f direction_;
-
 	sf::Sprite sprite_;
+
+	bool is_dead_ = false;
 
 public:
 	Projectile();
-
-	sf::Sprite get_sprite() { return sprite_; }
-	void Move(float dt);
+	void Move(float dt, const sf::Vector2u& window_size);
+	bool IsDead() const { return is_dead_; };
 
 protected:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-	// TODO : IsDead ?????????????????
 };
 
 #endif // PROJECTILE_H
