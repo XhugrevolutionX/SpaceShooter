@@ -127,15 +127,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Enemies.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Ship.cpp" />
-    <ClCompile Include="SpaceShooter.cpp" />
+    <ClCompile Include="Enemies.cc" />
+    <ClCompile Include="Game.cc" />
+    <ClCompile Include="Main.cc" />
+    <ClCompile Include="Player.cc" />
+    <ClCompile Include="Projectile.cc" />
+    <ClCompile Include="projectile_manager.cc" />
+    <ClCompile Include="Ship.cc" />
+    <ClCompile Include="SpaceShooter.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Enemies.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Projectile.h" />
+    <ClInclude Include="projectile_manager.h" />
     <ClInclude Include="Ship.h" />
     <ClInclude Include="SpaceShooter.h" />
   </ItemGroup>
@@ -143,6 +149,9 @@
     <Image Include="Assets\Player0.png" />
     <Image Include="Assets\Player1.png" />
     <Image Include="Assets\Player2.png" />
+    <Image Include="Assets\ship.png" />
+    <Image Include="Assets\ship_left.png" />
+    <Image Include="Assets\ship_right.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
