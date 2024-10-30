@@ -28,19 +28,19 @@ void Game::Loop()
 
 	while (window.isOpen())
 	{
-		if(background_1.getPosition().y == window.getSize().y)
+		if(background_1.getPosition().y >= window.getSize().y)
 		{
 			background_1.setPosition(0, -static_cast<int>(window.getSize().y));
 			background_2.setPosition(0, 0);
 		}
-		else if(background_2.getPosition().y == window.getSize().y)
+		else if(background_2.getPosition().y >= window.getSize().y)
 		{
 			background_2.setPosition(0, -static_cast<int>(window.getSize().y));
 			background_1.setPosition(0, 0);
 		}
 
-		background_1.setPosition(background_1.getPosition().x, background_1.getPosition().y + 1);
-		background_2.setPosition(background_2.getPosition().x, background_2.getPosition().y + 1);
+		background_1.setPosition(background_1.getPosition().x, background_1.getPosition().y + 0.2);
+		background_2.setPosition(background_2.getPosition().x, background_2.getPosition().y + 0.2);
 
 	
 
@@ -58,14 +58,14 @@ void Game::Loop()
 			}
 		}
 
-		//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-		//{
-		//	player.movePlayer(sf::Vector2f(0, -1), dt);
-		//}
-		//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-		//{
-		//	player.movePlayer(sf::Vector2f(0, 1), dt);
-		//}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+		{
+			player.movePlayer(sf::Vector2f(0, -1), dt, window.getSize());
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+		{
+			player.movePlayer(sf::Vector2f(0, 1), dt, window.getSize());
+		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 		{
 			player.movePlayer(sf::Vector2f(-1, 0), dt, window.getSize());

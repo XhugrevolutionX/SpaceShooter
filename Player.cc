@@ -17,9 +17,10 @@ void player::movePlayer(sf::Vector2f direction, float dt, const sf::Vector2u& wi
 	sf::Vector2f new_pos = get_position() + speed * direction * dt;
 
 
-	if (!(new_pos.x > window_size.x - get_sprite().at(0).getGlobalBounds().width || new_pos.x < 0))
+	if (!(new_pos.x > window_size.x - get_sprite().at(0).getGlobalBounds().width || new_pos.x < 0 || new_pos.y > window_size.y - get_sprite().at(0).getGlobalBounds().height || new_pos.y < 700))
 	{
 		set_position(new_pos, (int)get_sprite().size());
 	}
+
 }
 
