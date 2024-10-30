@@ -1,6 +1,7 @@
 #ifndef PROJECTILE_H
 #define PROJECTILE_H
 
+#include <SFML/Audio.hpp>
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Texture.hpp>
@@ -21,7 +22,8 @@ private:
 public:
 	Projectile();
 	void Move(float dt, const sf::Vector2u& window_size);
-	bool IsDead() const { return is_dead_; };
+	bool IsDead() const { return is_dead_; }
+
 
 protected:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

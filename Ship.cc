@@ -7,6 +7,7 @@ void ship::set_sprite(std::string &texture1_path)
 	texture1.loadFromFile(texture1_path);
 
 	sprites.at(0).setTexture(texture1);
+	sprites.at(0).setOrigin(0, 0);
 }
 void ship::set_sprite(std::string &texture1_path, std::string &texture2_path)
 {
@@ -16,7 +17,9 @@ void ship::set_sprite(std::string &texture1_path, std::string &texture2_path)
 	texture2.loadFromFile(texture2_path);
 
 	sprites.at(0).setTexture(texture1);
+	sprites.at(0).setOrigin(0, 0);
 	sprites.at(1).setTexture(texture2);
+	sprites.at(1).setOrigin(0, 0);
 }
 void ship::set_sprite(std::string &texture1_path, std::string &texture2_path, std::string &texture3_path)
 {
@@ -27,8 +30,11 @@ void ship::set_sprite(std::string &texture1_path, std::string &texture2_path, st
 	texture3.loadFromFile(texture3_path);
 
 	sprites.at(0).setTexture(texture1);
+	sprites.at(0).setOrigin(0, 0);
 	sprites.at(1).setTexture(texture2);
+	sprites.at(1).setOrigin(0, 0);
 	sprites.at(2).setTexture(texture3);
+	sprites.at(2).setOrigin(0, 0);
 }
 
 void ship::draw_ship(sf::RenderWindow &window, int frame)

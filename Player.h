@@ -7,15 +7,11 @@ class player : public ship
 {
 
 private:
-	std::string name;
 	const float speed = 400.0f;
 public:
 
 	player();
-	void set_name(std::string name_) { name = name_; }
-
-	std::string get_name() { return name; }
-	void movePlayer(sf::Vector2f direction, float dt);
+	void movePlayer(sf::Vector2f direction, float dt, const sf::Vector2u& window_size);
 };
 
 
