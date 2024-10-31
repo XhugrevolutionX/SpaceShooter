@@ -1,45 +1,28 @@
 #include "Ship.h"
 
-void ship::set_sprite(std::string &texture1_path)
+void ship::set_sprite(std::string& texture_path, sf::Vector2i pos, sf::Vector2i size, int nb_sprites)
 {
-	sprites.resize(1);
+	sprites.resize(nb_sprites);
+	textures.resize(nb_sprites);
 
-	texture1.loadFromFile(texture1_path);
+	for (int i = 0; i < nb_sprites; i++)
+	{
+		textures.at(i).loadFromFile(texture_path, sf::IntRect(pos.x + i * size.x, pos.y, size.x, size.y));
 
-	sprites.at(0).setTexture(texture1);
-	sprites.at(0).setOrigin(0, 0);
+		sprites.at(i).setTexture(textures.at(i));
+		sprites.at(i).setOrigin(size.x/2, size.y/2);
+	}
+
+	hitbox.setRadius(size.x / 4);
+	hitbox.setOrigin(hitbox.getRadius(), hitbox.getRadius());
+	hitbox.setFillColor(sf::Color::Red);
 }
-void ship::set_sprite(std::string &texture1_path, std::string &texture2_path)
-{
-	sprites.resize(2);
 
-	texture1.loadFromFile(texture1_path);
-	texture2.loadFromFile(texture2_path);
-
-	sprites.at(0).setTexture(texture1);
-	sprites.at(0).setOrigin(0, 0);
-	sprites.at(1).setTexture(texture2);
-	sprites.at(1).setOrigin(0, 0);
-}
-void ship::set_sprite(std::string &texture1_path, std::string &texture2_path, std::string &texture3_path)
-{
-	sprites.resize(3);
-
-	texture1.loadFromFile(texture1_path);
-	texture2.loadFromFile(texture2_path);
-	texture3.loadFromFile(texture3_path);
-
-	sprites.at(0).setTexture(texture1);
-	sprites.at(0).setOrigin(0, 0);
-	sprites.at(1).setTexture(texture2);
-	sprites.at(1).setOrigin(0, 0);
-	sprites.at(2).setTexture(texture3);
-	sprites.at(2).setOrigin(0, 0);
-}
 
 void ship::draw_ship(sf::RenderWindow &window, int frame)
 {
 	window.draw(sprites.at(frame));
+	//window.draw(hitbox);
 }
 
 void ship::set_position(sf::Vector2f pos, int nb_sprites)
@@ -47,6 +30,7 @@ void ship::set_position(sf::Vector2f pos, int nb_sprites)
 	for (int n = 0; n < nb_sprites; n++)
 	{
 		sprites.at(n).setPosition(pos);
+		hitbox.setPosition(pos);
 	}
 }
 

@@ -14,6 +14,7 @@ void ProjectileManager::Spawn(sf::Vector2f spawn_position)
 	projectiles_.emplace_back();
 	projectiles_.back().setPosition(spawn_position);
 	sound_projectile.setBuffer(sfx);
+	sound_projectile.setVolume(50);
 	sound_projectile.play();
 
 }
@@ -32,7 +33,6 @@ void ProjectileManager::Refresh(float dt_, const sf::Vector2u& window_size)
 	{
 		p.Move(dt_, window_size);
 	}
-	std::cout << "nb projectiles ? " << projectiles_.size() << '\n';
 }
 void ProjectileManager::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {

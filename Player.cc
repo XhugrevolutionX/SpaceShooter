@@ -5,11 +5,11 @@
 player::player()
 {
 
-	std::string path0 = "Assets/ship.png";
-	std::string path1 = "Assets/ship_right.png";
-	std::string path2 = "Assets/ship_left.png";
+	std::string path0 = "Assets/red_ship.png";
+	sf::Vector2i pos = {0,0};
+	sf::Vector2i size = {64,64 };
 
-	set_sprite(path0, path1, path2);
+	set_sprite(path0, pos, size, 3);
 }
 
 void player::movePlayer(sf::Vector2f direction, float dt, const sf::Vector2u& window_size)
@@ -19,8 +19,8 @@ void player::movePlayer(sf::Vector2f direction, float dt, const sf::Vector2u& wi
 
 	if (!(new_pos.x > window_size.x - get_sprite().at(0).getGlobalBounds().width || new_pos.x < 0 || new_pos.y > window_size.y - get_sprite().at(0).getGlobalBounds().height || new_pos.y < 700))
 	{
-		set_position(new_pos, (int)get_sprite().size());
+		set_position(new_pos, static_cast<int>(get_sprite().size()));
 	}
 
 }
-
+ 

@@ -26,8 +26,11 @@ void Game::Loop()
 	bool is_moving = false;
 	float laser_cooldown = 0;
 
+
+	//Game loop
 	while (window.isOpen())
 	{
+		//Background scrolling
 		if(background_1.getPosition().y >= window.getSize().y)
 		{
 			background_1.setPosition(0, -static_cast<int>(window.getSize().y));
@@ -44,20 +47,21 @@ void Game::Loop()
 
 	
 
-
-
 		int ship_frame = 0;
+
 		window.clear();
 
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
+			//Closing the window
 			if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 			{
 				window.close();
 			}
 		}
 
+		//moving and shooting
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 		{
 			player.movePlayer(sf::Vector2f(0, -1), dt, window.getSize());
@@ -69,12 +73,16 @@ void Game::Loop()
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 		{
 			player.movePlayer(sf::Vector2f(-1, 0), dt, window.getSize());
-			ship_frame = 2;
+			ship_frame = 1;
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 		{
 			player.movePlayer(sf::Vector2f(1, 0), dt, window.getSize());
-			ship_frame = 1;
+			ship_frame = 2;
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+		{
+			ship_frame = 0;
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && laser_cooldown > 0.5)
 		{
@@ -86,13 +94,13 @@ void Game::Loop()
 		projectiles_.Refresh(dt, window.getSize());
 
 
-
+		//draw everything
 		window.draw(background_1);
 		window.draw(background_2);
 		player.draw_ship(window, ship_frame);
 		window.draw(projectiles_);
 
-
+		
 		window.display();
 
 		laser_cooldown += dt;

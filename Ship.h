@@ -8,18 +8,14 @@ class ship
 private:
 	int hp;
 	std::vector<sf::Sprite> sprites;
-
-	sf::Texture texture1;
-	sf::Texture texture2;
-	sf::Texture texture3;
+	std::vector<sf::Texture> textures;
+	sf::CircleShape hitbox;
 
 public:
 	void set_hp(int hp_) { hp = hp_; }
 	int get_hp() { return hp; }
 
-	void set_sprite(std::string &texture1_path);
-	void set_sprite(std::string &texture1_path, std::string &texture2_path);
-	void set_sprite(std::string &texture1_path, std::string &texture2_path, std::string &texture3_path);
+	void set_sprite(std::string &texture_path, sf::Vector2i pos, sf::Vector2i size, int nb_sprites);
 
 	std::vector<sf::Sprite> get_sprite() { return sprites; }
 
