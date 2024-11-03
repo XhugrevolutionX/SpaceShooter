@@ -1,6 +1,6 @@
 #include "Ship.h"
 
-void ship::set_sprite(std::string& texture_path, sf::Vector2i pos, sf::Vector2i size, int nb_sprites)
+void ship::set_sprites(std::string& texture_path, sf::Vector2i pos, sf::Vector2i size, int nb_sprites)
 {
 	sprites.resize(nb_sprites);
 	textures.resize(nb_sprites);
@@ -13,16 +13,9 @@ void ship::set_sprite(std::string& texture_path, sf::Vector2i pos, sf::Vector2i 
 		sprites.at(i).setOrigin(size.x/2, size.y/2);
 	}
 
-	hitbox.setRadius(size.x / 4);
+	hitbox.setRadius(size.x / 25);
 	hitbox.setOrigin(hitbox.getRadius(), hitbox.getRadius());
 	hitbox.setFillColor(sf::Color::Red);
-}
-
-
-void ship::draw_ship(sf::RenderWindow &window, int frame)
-{
-	window.draw(sprites.at(frame));
-	//window.draw(hitbox);
 }
 
 void ship::set_position(sf::Vector2f pos, int nb_sprites)
@@ -34,7 +27,14 @@ void ship::set_position(sf::Vector2f pos, int nb_sprites)
 	}
 }
 
-sf::Vector2f ship::get_position()
+sf::Vector2f ship::get_position() const
 {
 	return sprites.at(0).getPosition();
+}
+
+void ship::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+	states.transform *= getTransform();
+	target.draw(get_sprite().at(get_state()), states);
+	target.draw(hitbox);
 }

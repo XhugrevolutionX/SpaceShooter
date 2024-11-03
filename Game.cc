@@ -3,8 +3,6 @@
 
 Game::Game()
 {
-	
-	
 
 	backgroud_texture.loadFromFile("Assets/Background.png");
 
@@ -23,7 +21,6 @@ Game::Game()
  
 void Game::Loop()
 {
-	bool is_moving = false;
 	float laser_cooldown = 0;
 
 
@@ -47,8 +44,7 @@ void Game::Loop()
 
 	
 
-		int ship_frame = 0;
-
+		player.set_state(0);
 		window.clear();
 
 		sf::Event event;
@@ -73,31 +69,33 @@ void Game::Loop()
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 		{
 			player.movePlayer(sf::Vector2f(-1, 0), dt, window.getSize());
-			ship_frame = 1;
+			player.set_state(1);
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 		{
 			player.movePlayer(sf::Vector2f(1, 0), dt, window.getSize());
-			ship_frame = 2;
+			player.set_state(2);
+
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 		{
-			ship_frame = 0;
+			player.set_state(0);
+
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && laser_cooldown > 0.5)
 		{
 
-			projectiles_.Spawn({ player.get_position().x + 10, player.get_position().y - 10});
+			projectiles_.Spawn({player.get_position().x, player.get_position().y});
 			laser_cooldown = 0;
 		}
 
-		projectiles_.Refresh(dt, window.getSize());
+		//projectiles_.Refresh(dt, window.getSize());
 
 
 		//draw everything
 		window.draw(background_1);
 		window.draw(background_2);
-		player.draw_ship(window, ship_frame);
+		window.draw(player);
 		window.draw(projectiles_);
 
 		
