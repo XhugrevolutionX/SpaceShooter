@@ -1,7 +1,7 @@
 #ifndef PROJECTILE_MANAGER_H
 #define PROJECTILE_MANAGER_H
 
-
+#include "SFML/Audio.hpp"
 #include "Projectile.h"
 
 class ProjectileManager : public sf::Drawable
@@ -13,6 +13,8 @@ private:
 public:
 	ProjectileManager();
 	void Spawn(sf::Vector2f spawn_position);
+
+	std::vector < Projectile> get_projectiles() { return projectiles_; }
 
 	void Refresh(float dt_, const sf::Vector2u& window_size);
 

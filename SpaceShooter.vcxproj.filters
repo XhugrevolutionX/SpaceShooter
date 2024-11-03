@@ -24,7 +24,7 @@
     <ClCompile Include="Player.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Enemies.cc">
+    <ClCompile Include="enemy.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Projectile.cc">
@@ -36,6 +36,9 @@
     <ClCompile Include="projectile_manager.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Enemies_manager.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Ship.h">
@@ -44,7 +47,7 @@
     <ClInclude Include="Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Enemies.h">
+    <ClInclude Include="enemy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Projectile.h">
@@ -54,6 +57,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="projectile_manager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemiesManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

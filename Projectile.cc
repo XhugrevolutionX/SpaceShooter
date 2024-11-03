@@ -8,11 +8,11 @@ Projectile::Projectile()
 {
 	texture_.loadFromFile("Assets/Laser.png");
 	sprite_.setTexture(texture_);
-	setOrigin(get_texture().getSize().x / 2, get_texture().getSize().y / 2);
+	setOrigin(texture_.getSize().x / 2, texture_.getSize().y / 2);
 	sprite_.setRotation(-45);
 	sprite_.setPosition(-8, 0);
 
-	hitbox.setRadius(get_texture().getSize().x / 4);
+	hitbox.setRadius(texture_.getSize().x / 4);
 	hitbox.setOrigin(hitbox.getRadius(), hitbox.getRadius());
 	hitbox.setScale(1, 2);
 	hitbox.setFillColor(sf::Color::Red);

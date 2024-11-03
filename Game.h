@@ -1,6 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include "EnemiesManager.h"
 #include "Player.h"
 #include "projectile_manager.h"
 
@@ -10,6 +11,7 @@ class Game
 private:
 	sf::RenderWindow window;
 	ProjectileManager projectiles_;
+	EnemiesManager enemies_;
 	player player;
 	sf::Texture backgroud_texture;
 	sf::Sprite background_1;

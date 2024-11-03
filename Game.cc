@@ -22,6 +22,7 @@ Game::Game()
 void Game::Loop()
 {
 	float laser_cooldown = 0;
+	float enemies_cooldown = 0;
 
 
 	//Game loop
@@ -58,26 +59,26 @@ void Game::Loop()
 		}
 
 		//moving and shooting
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 		{
 			player.movePlayer(sf::Vector2f(0, -1), dt, window.getSize());
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 		{
 			player.movePlayer(sf::Vector2f(0, 1), dt, window.getSize());
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 		{
 			player.movePlayer(sf::Vector2f(-1, 0), dt, window.getSize());
 			player.set_state(1);
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 		{
 			player.movePlayer(sf::Vector2f(1, 0), dt, window.getSize());
 			player.set_state(2);
 
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::D) && sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 		{
 			player.set_state(0);
 
@@ -88,20 +89,27 @@ void Game::Loop()
 			projectiles_.Spawn(player.get_position());
 			laser_cooldown = 0;
 		}
-
+		if (enemies_cooldown > 2)
+		{
+			enemies_.Spawn(window.getSize());
+			enemies_cooldown = 0;
+		}
 		projectiles_.Refresh(dt, window.getSize());
+		enemies_.Refresh(dt, window.getSize());
 
 
 		//draw everything
 		window.draw(background_1);
 		window.draw(background_2);
 		window.draw(player);
+		window.draw(enemies_);
 		window.draw(projectiles_);
 
 		
 		window.display();
 
 		laser_cooldown += dt;
+		enemies_cooldown += dt;
 		dt = clock.restart().asSeconds();
 	}
 }
