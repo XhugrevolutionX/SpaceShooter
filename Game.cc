@@ -58,26 +58,26 @@ void Game::Loop()
 		}
 
 		//moving and shooting
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 		{
 			player.movePlayer(sf::Vector2f(0, -1), dt, window.getSize());
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 		{
 			player.movePlayer(sf::Vector2f(0, 1), dt, window.getSize());
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 		{
 			player.movePlayer(sf::Vector2f(-1, 0), dt, window.getSize());
 			player.set_state(1);
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		{
 			player.movePlayer(sf::Vector2f(1, 0), dt, window.getSize());
 			player.set_state(2);
 
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 		{
 			player.set_state(0);
 
@@ -85,11 +85,11 @@ void Game::Loop()
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && laser_cooldown > 0.5)
 		{
 
-			projectiles_.Spawn({player.get_position().x, player.get_position().y});
+			projectiles_.Spawn(player.get_position());
 			laser_cooldown = 0;
 		}
 
-		//projectiles_.Refresh(dt, window.getSize());
+		projectiles_.Refresh(dt, window.getSize());
 
 
 		//draw everything

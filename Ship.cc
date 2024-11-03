@@ -13,8 +13,9 @@ void ship::set_sprites(std::string& texture_path, sf::Vector2i pos, sf::Vector2i
 		sprites.at(i).setOrigin(size.x/2, size.y/2);
 	}
 
-	hitbox.setRadius(size.x / 25);
+	hitbox.setRadius(size.x / 4);
 	hitbox.setOrigin(hitbox.getRadius(), hitbox.getRadius());
+	hitbox.setScale(1.5, 2.5);
 	hitbox.setFillColor(sf::Color::Red);
 }
 
@@ -36,5 +37,5 @@ void ship::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	states.transform *= getTransform();
 	target.draw(get_sprite().at(get_state()), states);
-	target.draw(hitbox);
+	//target.draw(hitbox);
 }

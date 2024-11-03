@@ -10,12 +10,13 @@ Projectile::Projectile()
 	sprite_.setTexture(texture_);
 	setOrigin(get_texture().getSize().x / 2, get_texture().getSize().y / 2);
 	sprite_.setRotation(-45);
+	sprite_.setPosition(-8, 0);
 
 	hitbox.setRadius(get_texture().getSize().x / 4);
 	hitbox.setOrigin(hitbox.getRadius(), hitbox.getRadius());
 	hitbox.setScale(1, 2);
 	hitbox.setFillColor(sf::Color::Red);
-
+	hitbox.setPosition(15, 0);
 
 	direction_ = { 0, -500 };
 	counter_++;
@@ -25,7 +26,7 @@ void Projectile::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	states.transform *= getTransform();
 	target.draw(sprite_, states);
-	target.draw(hitbox, states);
+	//target.draw(hitbox, states);
 }
 
 void Projectile::Move(float dt, const sf::Vector2u& window_size)
