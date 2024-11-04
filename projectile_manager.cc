@@ -11,6 +11,7 @@ ProjectileManager::ProjectileManager()
 }
 void ProjectileManager::Spawn(sf::Vector2f spawn_position)
 {
+
 	projectiles_.emplace_back();
 	projectiles_.back().setPosition(spawn_position);
 	sound_projectile.setBuffer(sfx);

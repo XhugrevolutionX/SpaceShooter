@@ -4,17 +4,12 @@
 #include "EnemiesManager.h"
 #include "random"
 
-EnemiesManager::EnemiesManager()
-{
-	
-}
-
 void EnemiesManager::Spawn(const sf::Vector2u& window_size)
 {
 	sf::Vector2f spawn_pos;
 
 	enemies_.emplace_back();
-	enemies_.back().set_position({ 0 + (enemies_.back().get_sprite().at(0).getTexture()->getSize().x / 2) + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / (window_size.x - (enemies_.back().get_sprite().at(0).getTexture()->getSize().x / 2) - 0 + (enemies_.back().get_sprite().at(0).getTexture()->getSize().x / 2)))) ,-10 },1);
+	enemies_.back().set_position({ (enemies_.back().get_sprite().at(0).getTexture()->getSize().x / 2) + static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / (window_size.x - (enemies_.back().get_sprite().at(0).getTexture()->getSize().x / 2) - 0 + (enemies_.back().get_sprite().at(0).getTexture()->getSize().x / 2)))) ,-10 },1);
 
 }
 

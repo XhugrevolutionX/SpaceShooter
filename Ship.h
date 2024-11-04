@@ -25,7 +25,6 @@ public:
 	std::vector<sf::Sprite> get_sprite() const { return sprites; }
 
 	void set_position(sf::Vector2f pos, int nb_sprites);
-	sf::Vector2f get_position() const;
 
 protected:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

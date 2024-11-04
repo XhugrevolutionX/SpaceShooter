@@ -9,7 +9,7 @@ private:
 	std::vector<enemy> enemies_;
 
 public:
-	EnemiesManager();
+	EnemiesManager() = default;
 
 	void Spawn(const sf::Vector2u& window_size);
 

@@ -15,7 +15,7 @@ enemy::enemy()
 }
 void enemy::Move(float dt, const sf::Vector2u& window_size)
 {
-	setPosition(getPosition() + direction_ * dt);
+	set_position(getPosition() + direction_ * dt, 1);
 
 	sf::Vector2f pos = getPosition();
 
@@ -29,7 +29,7 @@ void enemy::check_collision(float dt, ProjectileManager& projectile_manager_)
 {
 	for (Projectile p : projectile_manager_.get_projectiles())
 	{
-		if (get_position() == p.get_hitbox().getPosition())
+		if (getPosition() == p.get_hitbox().getPosition())
 		{
 			is_dead_ = true;
 		}

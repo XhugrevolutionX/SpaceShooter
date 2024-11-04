@@ -86,7 +86,7 @@ void Game::Loop()
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && laser_cooldown > 0.5)
 		{
 
-			projectiles_.Spawn(player.get_position());
+			projectiles_.Spawn(player.getPosition());
 			laser_cooldown = 0;
 		}
 		if (enemies_cooldown > 2)
