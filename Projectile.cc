@@ -26,7 +26,7 @@ void Projectile::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	states.transform *= getTransform();
 	target.draw(sprite_, states);
-	target.draw(hitbox, states);
+	//target.draw(hitbox, states);
 }
 
 void Projectile::Move(float dt, const sf::Vector2u& window_size)

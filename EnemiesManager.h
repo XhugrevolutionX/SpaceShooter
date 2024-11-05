@@ -13,7 +13,7 @@ public:
 
 	void Spawn(const sf::Vector2u& window_size);
 
-	void Refresh(float dt_, const sf::Vector2u& window_size);
+	void Refresh(float dt_, const sf::Vector2u& window_size,ProjectileManager projectiles_);
 
 protected:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

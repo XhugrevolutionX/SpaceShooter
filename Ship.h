@@ -26,6 +26,8 @@ public:
 
 	void set_position(sf::Vector2f pos, int nb_sprites);
 
+	sf::CircleShape get_hitbox() const { return hitbox; }
+
 protected:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };

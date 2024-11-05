@@ -29,5 +29,5 @@ void ship::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	states.transform *= getTransform();
 	target.draw(get_sprite().at(get_state()), states);
-	target.draw(hitbox);
+	//target.draw(hitbox);
 }

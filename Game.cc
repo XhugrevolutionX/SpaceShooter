@@ -95,7 +95,7 @@ void Game::Loop()
 			enemies_cooldown = 0;
 		}
 		projectiles_.Refresh(dt, window.getSize());
-		enemies_.Refresh(dt, window.getSize());
+		enemies_.Refresh(dt, window.getSize(), projectiles_);
 
 
 		//draw everything

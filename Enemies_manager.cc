@@ -1,6 +1,3 @@
-
-
-
 #include "EnemiesManager.h"
 #include "random"
 
@@ -13,16 +10,21 @@ void EnemiesManager::Spawn(const sf::Vector2u& window_size)
 
 }
 
-void EnemiesManager::Refresh(float dt_, const sf::Vector2u& window_size)
+void EnemiesManager::Refresh(float dt_, const sf::Vector2u& window_size, ProjectileManager projectiles_)
 {
-	//Clean unused projectiles
+	for (enemy& e : enemies_)
+	{
+		e.check_collision(dt_, projectiles_);
+	}
+
+	//Clean unused enemies
 	auto removed_elt = std::remove_if(enemies_.begin(), enemies_.end(), [](const enemy& e) { return e.IsDead(); });
 	if (removed_elt != enemies_.end())
 	{
 		enemies_.erase(removed_elt);
 	}
 
-	//Move remaining projectiles
+	//Move remaining enemies
 	for (enemy& e : enemies_)
 	{
 		e.Move(dt_, window_size);
