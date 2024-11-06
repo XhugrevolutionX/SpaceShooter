@@ -18,13 +18,7 @@
     <ClCompile Include="Main.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Ship.cc">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cc">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="enemy.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Projectile.cc">
@@ -36,18 +30,18 @@
     <ClCompile Include="projectile_manager.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Enemies_manager.cc">
+    <ClCompile Include="Entity.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Asteroid.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AsteroidManager.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ship.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="enemy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Projectile.h">
@@ -59,7 +53,13 @@
     <ClInclude Include="projectile_manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="EnemiesManager.h">
+    <ClInclude Include="Entity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Asteroid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AsteroidManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

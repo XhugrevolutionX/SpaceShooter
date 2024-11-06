@@ -1,32 +1,18 @@
 #ifndef PROJECTILE_H
 #define PROJECTILE_H
 
-#include <SFML/Graphics.hpp>
+#include "Entity.h"
 
-class Projectile : public sf::Drawable, public sf::Transformable
+
+class Projectile : public Entity
 {
 
 private:
-	static int counter_;
 	static sf::Texture texture_;
-
-	sf::Vector2f direction_;
-	sf::Sprite sprite_;
-
-	sf::CircleShape hitbox;
-
-	bool is_dead_ = false;
+	static int counter_;
 
 public:
 	Projectile();
-	void Move(float dt, const sf::Vector2u& window_size);
-	bool IsDead() const { return is_dead_; }
-
-	sf::CircleShape get_hitbox() const { return hitbox; }
-
-
-protected:
-	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };
 
 #endif // PROJECTILE_H

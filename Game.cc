@@ -13,7 +13,7 @@ Game::Game()
 
 	window.create(sf::VideoMode(background_1.getGlobalBounds().width, background_1.getGlobalBounds().height), "Space Shooter !!!");
 
-	player.set_position({ static_cast<float>(window.getSize().x) / 2,static_cast<float>(window.getSize().y / 6) * 5 }, player.get_sprite().size());
+	player.setPosition({ static_cast<float>(window.getSize().x) / 2,static_cast<float>(window.getSize().y / 6) * 5 });
 
 	background_2.setPosition(0, -static_cast<int>(window.getSize().y));
 }
@@ -22,11 +22,10 @@ Game::Game()
 void Game::Loop()
 {
 	float laser_cooldown = 0;
-	float enemies_cooldown = 0;
 
 
 	//Game loop
-	while (window.isOpen())
+	while (window.isOpen() && !player.IsDead())
 	{
 		//Background scrolling
 		if(background_1.getPosition().y >= window.getSize().y)
@@ -83,33 +82,32 @@ void Game::Loop()
 			player.set_state(0);
 
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && laser_cooldown > 0.5)
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && laser_cooldown > 0.25)
 		{
 
 			projectiles_.Spawn(player.getPosition());
 			laser_cooldown = 0;
 		}
-		if (enemies_cooldown > 2)
-		{
-			enemies_.Spawn(window.getSize());
-			enemies_cooldown = 0;
-		}
+
 		projectiles_.Refresh(dt, window.getSize());
-		enemies_.Refresh(dt, window.getSize(), projectiles_);
+		asteroids_.Refresh(dt, window.getSize());
+
+		projectiles_.CheckAsteroidCollisions(asteroids_.GetEntities());
+		player.CheckAsteroidCollisions(asteroids_.GetEntities());
 
 
 		//draw everything
 		window.draw(background_1);
 		window.draw(background_2);
-		window.draw(player);
-		window.draw(enemies_);
+		window.draw(asteroids_);
 		window.draw(projectiles_);
+		window.draw(player);
+	
 
 		
 		window.display();
 
 		laser_cooldown += dt;
-		enemies_cooldown += dt;
 		dt = clock.restart().asSeconds();
 	}
 }
