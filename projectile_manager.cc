@@ -27,7 +27,7 @@ void ProjectileManager::Refresh(float dt_, const sf::Vector2u& window_size)
 	auto removed_elt = std::remove_if(projectiles_.begin(), projectiles_.end(), [](const Entity& p) { return p.IsDead(); });
 	if (removed_elt != projectiles_.end())
 	{
-		projectiles_.erase(removed_elt);
+		projectiles_.erase(removed_elt, projectiles_.end());
 	}
 
 	//Move remaining projectiles

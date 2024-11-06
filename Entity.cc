@@ -2,8 +2,10 @@
 
 void Entity::Move(float dt, const sf::Vector2u& window_size)
 {
-
-	setPosition(getPosition() + direction_ * dt);
+	if(!is_dead_)
+	{
+		setPosition(getPosition() + direction_ * dt);
+	}
 
 	sf::Vector2f pos = getPosition();
 

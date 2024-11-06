@@ -7,6 +7,7 @@ class Entity : public sf::Transformable, public sf::Drawable
 {
 protected:
 
+	std::vector<sf::Texture> death_animation_;
 	sf::Vector2f direction_;
 	sf::Sprite sprite_;
 	bool is_dead_ = false;

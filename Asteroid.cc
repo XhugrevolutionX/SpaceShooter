@@ -5,6 +5,13 @@ int Asteroid::counter_ = 0;
 sf::Texture Asteroid::texture_;
 Asteroid::Asteroid()
 {
+	int nb_sprites = 4;
+	death_animation_.resize(nb_sprites);
+
+	for (int i = 0; i < nb_sprites; i++)
+	{
+		death_animation_.at(i).loadFromFile("Assets/explosion" + std::to_string(i) + ".png");
+	}
 
 	texture_.loadFromFile("Assets/Asteroid.png");
 	sprite_.setTexture(texture_);
