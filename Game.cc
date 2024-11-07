@@ -16,17 +16,42 @@ Game::Game()
 	player.setPosition({ static_cast<float>(window.getSize().x) / 2,static_cast<float>(window.getSize().y / 6) * 5 });
 
 	background_2.setPosition(0, -static_cast<int>(window.getSize().y));
+
+
+	if (!font.loadFromFile("Assets\\BrownieStencil.ttf"))
+	{
+
+	}
+
+	player_hp_display_.setFont(font);
+	player_hp_display_.setPosition(window.getSize().x / 20 * 18, window.getSize().y / 25);
+	player_hp_display_.setCharacterSize(25);
+	player_hp_display_.setFillColor(sf::Color::White);
+
+	player_score_display_.setFont(font);
+	player_score_display_.setPosition(window.getSize().x / 20 * 18, window.getSize().y / 25 * 2);
+	player_score_display_.setCharacterSize(25);
+	player_score_display_.setFillColor(sf::Color::Red);
 }
 
- 
 void Game::Loop()
 {
 	float laser_cooldown = 0;
 
+	std::string str = std::to_string(player.GetHp());
+	str.append(" Hp");
+	player_hp_display_.setString(str);
+
+	std::string str_score = std::to_string(player.GetScore());
+	str_score.append(" Points");
+	player_score_display_.setString(str_score);
 
 	//Game loop
 	while (window.isOpen() && !player.IsDead())
 	{
+
+		window.clear();
+
 		//Background scrolling
 		if(background_1.getPosition().y >= window.getSize().y)
 		{
@@ -42,10 +67,8 @@ void Game::Loop()
 		background_1.setPosition(background_1.getPosition().x, background_1.getPosition().y + 0.2);
 		background_2.setPosition(background_2.getPosition().x, background_2.getPosition().y + 0.2);
 
-	
 
 		player.set_state(0);
-		window.clear();
 
 		sf::Event event;
 		while (window.pollEvent(event))
@@ -92,22 +115,29 @@ void Game::Loop()
 		projectiles_.Refresh(dt, window.getSize());
 		asteroids_.Refresh(dt, window.getSize());
 
-		projectiles_.CheckAsteroidCollisions(asteroids_.GetEntities());
-		player.CheckAsteroidCollisions(asteroids_.GetEntities());
-
-
-		//draw everything
-		window.draw(background_1);
-		window.draw(background_2);
-		window.draw(asteroids_);
-		window.draw(projectiles_);
-		window.draw(player);
-	
-
+		CheckCollisions();
+		draw();
 		
 		window.display();
 
 		laser_cooldown += dt;
 		dt = clock.restart().asSeconds();
 	}
+}
+
+void Game::draw()
+{
+	window.draw(background_1);
+	window.draw(background_2);
+	window.draw(asteroids_);
+	window.draw(projectiles_);
+	window.draw(player);
+	window.draw(player_hp_display_);
+	window.draw(player_score_display_);
+}
+
+void Game::CheckCollisions()
+{
+	projectiles_.CheckAsteroidCollisions(asteroids_.GetEntities(), player, player_score_display_);
+	player.CheckAsteroidCollisions(asteroids_.GetEntities(), player_hp_display_);
 }

@@ -22,25 +22,29 @@ player::player()
 	hitbox.setOrigin(hitbox.getRadius(), hitbox.getRadius());
 	hitbox.setScale(1.5, 2.5);
 	hitbox.setFillColor(sf::Color::Red);
-
 }
 
-void player::Damage()
+void player::Damage(sf::Text& player_hp_display)
 {
 	hp -= 1;
 	if (hp <= 0)
 	{
 		SetDeath();
 	}
+
+	std::string str = std::to_string(GetHp());
+	str.append(" Hp");
+	player_hp_display.setString(str);
+
 }
-void player::CheckAsteroidCollisions(std::vector<Asteroid>& asteroids_)
+void player::CheckAsteroidCollisions(std::vector<Asteroid>& asteroids_, sf::Text& player_hp_)
 {
 	
 	for (auto& a : asteroids_)
 	{
 		if (IsDead() == false && a.IsDead() == false && Intersects(a.HitBox()))
 		{
-			Damage();
+			Damage(player_hp_);
 			a.SetDeath();
 		}
 	}

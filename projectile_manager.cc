@@ -2,7 +2,6 @@
 
 #include <complex>
 
-
 ProjectileManager::ProjectileManager()
 {
 	sfx.loadFromFile("Assets/laser.mp3");
@@ -37,7 +36,7 @@ void ProjectileManager::Refresh(float dt_, const sf::Vector2u& window_size)
 	}
 }
 
-void ProjectileManager::CheckAsteroidCollisions(std::vector<Asteroid>& asteroids_)
+void ProjectileManager::CheckAsteroidCollisions(std::vector<Asteroid>& asteroids_, player& player, sf::Text& player_score_display)
 {
 	for (auto& p : projectiles_)
 	{
@@ -47,9 +46,15 @@ void ProjectileManager::CheckAsteroidCollisions(std::vector<Asteroid>& asteroids
 			{
 				p.SetDeath();
 				a.SetDeath();
+				player.SetScore(5);
 			}
 		}
 	}
+
+	std::string str_score = std::to_string(player.GetScore());
+	str_score.append(" Points");
+	player_score_display.setString(str_score);
+
 }
 
 void ProjectileManager::draw(sf::RenderTarget& target, sf::RenderStates states) const

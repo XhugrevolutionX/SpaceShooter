@@ -5,6 +5,7 @@
 #include "SFML/Audio.hpp"
 #include "Projectile.h"
 #include <vector>
+#include "Player.h"
 
 
 class ProjectileManager : public sf::Drawable
@@ -17,7 +18,7 @@ public:
 	ProjectileManager();
 	void Spawn(sf::Vector2f spawn_position);
 	void Refresh(float dt_, const sf::Vector2u& window_size);
-	void CheckAsteroidCollisions(std::vector<Asteroid>& asteroids_);
+	void CheckAsteroidCollisions(std::vector<Asteroid>& asteroids_, player& player, sf::Text& player_score_display);
 
 
 protected:

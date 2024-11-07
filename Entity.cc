@@ -35,5 +35,14 @@ void Entity::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	states.transform *= getTransform();
 	target.draw(sprite_, states);
+
+	//draw the hitbox
 	//target.draw(hitbox, states);
+
+	//draw the hitbox Global bounds
+	//sf::RectangleShape border({ hitbox.getGlobalBounds().width , hitbox.getGlobalBounds().height });
+	//border.setOrigin(border.getSize().x / 2, border.getSize().y / 2);
+	//border.setPosition(getPosition().x, getPosition().y);
+	//border.setFillColor(sf::Color::Blue);
+	//target.draw(border);
 }
