@@ -15,6 +15,7 @@ void Entity::Move(float dt, const sf::Vector2u& window_size)
 	{
 		is_dead_ = true;
 	}
+
 }
 
 bool Entity::Intersects(sf::FloatRect hitBox_)
@@ -36,13 +37,15 @@ void Entity::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	states.transform *= getTransform();
 	target.draw(sprite_, states);
 
-	//draw the hitbox
+	////draw the hitbox
 	//target.draw(hitbox, states);
 
-	//draw the hitbox Global bounds
+	////draw the hitbox Global bounds
 	//sf::RectangleShape border({ hitbox.getGlobalBounds().width , hitbox.getGlobalBounds().height });
 	//border.setOrigin(border.getSize().x / 2, border.getSize().y / 2);
 	//border.setPosition(getPosition().x, getPosition().y);
-	//border.setFillColor(sf::Color::Blue);
+	//border.setFillColor(sf::Color::Transparent);
+	//border.setOutlineColor(sf::Color::Blue);
+	//border.setOutlineThickness(2);
 	//target.draw(border);
 }
