@@ -1,6 +1,8 @@
 #include "AsteroidManager.h"
 #include <random>
 
+constexpr float kSpawnPeriod = 0.75f;
+
 //AsteroidManager::AsteroidManager()
 //{}
 
@@ -8,13 +10,12 @@
 void AsteroidManager::Spawn(const sf::Vector2u& window_size)
 {
 	asteroids_.emplace_back();
-	//asteroids_.back().setPosition();
 }
 
 void AsteroidManager::Refresh(float dt_, const sf::Vector2u& window_size)
 {
-	time_elapsed_ += timer_.restart().asSeconds();
-	if (time_elapsed_ > 1)
+	spawn_timer += dt_;
+	if (spawn_timer > kSpawnPeriod)
 	{
 		asteroids_.emplace_back();
 
@@ -24,9 +25,9 @@ void AsteroidManager::Refresh(float dt_, const sf::Vector2u& window_size)
 		std::default_random_engine engine_x(rn_device_x());
 		std::uniform_real_distribution<float> uniform_dist_x(0, window_size.x);
 
-		asteroids_.back().setPosition(uniform_dist_x(engine_x), 0);
+		asteroids_.back().SetPosition(uniform_dist_x(engine_x), 0);
 
-		time_elapsed_ = 0;
+		spawn_timer = 0;
 	}
 
 	//Clean unused projectiles

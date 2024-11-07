@@ -13,6 +13,7 @@ private:
 public:
 	Asteroid();
 
+	void DeathAnim(float dt_);
 	void Rotate();
 
 };

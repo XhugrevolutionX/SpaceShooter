@@ -1,5 +1,15 @@
 #include "Entity.h"
 
+Entity::Entity()
+{
+	int nb_sprites_death = 4;
+	death_anim.resize(nb_sprites_death);
+	for (int i = 0; i < nb_sprites_death; i++)
+	{
+		death_anim.at(i).loadFromFile("Assets/explosion" + std::to_string(i) + ".png");
+	}
+}
+
 void Entity::Move(float dt, const sf::Vector2u& window_size)
 {
 	if(!is_dead_)
@@ -23,13 +33,23 @@ bool Entity::Intersects(sf::FloatRect hitBox_)
 	return HitBox().intersects(hitBox_);
 }
 
-sf::FloatRect Entity::HitBox()
+sf::FloatRect  Entity::HitBox()
 {
 	sf::FloatRect hit_box = hitbox.getGlobalBounds();
 	hit_box.left += getPosition().x;
 	hit_box.top += getPosition().y;
 
 	return hit_box;
+}
+
+void Entity::SetPosition(float x, float y)
+{
+	setPosition(x, y);
+}
+
+void Entity::SetPosition(sf::Vector2f pos)
+{
+	setPosition(pos);
 }
 
 void Entity::draw(sf::RenderTarget& target, sf::RenderStates states) const

@@ -13,6 +13,7 @@ private:
 
 public:
 	Projectile();
+	void SetDirection(sf::Vector2f dir) { direction_ = dir; }
 };
 
 #endif // PROJECTILE_H

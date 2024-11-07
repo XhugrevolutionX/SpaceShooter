@@ -5,13 +5,6 @@ int Asteroid::counter_ = 0;
 sf::Texture Asteroid::texture_;
 Asteroid::Asteroid()
 {
-	int nb_sprites = 4;
-	death_animation_.resize(nb_sprites);
-
-	for (int i = 0; i < nb_sprites; i++)
-	{
-		death_animation_.at(i).loadFromFile("Assets/explosion" + std::to_string(i) + ".png");
-	}
 
 	texture_.loadFromFile("Assets/Asteroid.png");
 	sprite_.setTexture(texture_);
@@ -26,7 +19,7 @@ Asteroid::Asteroid()
 	std::uniform_real_distribution<float> uniform_dist_y(200, 300);
 
 
-	hitbox.setRadius(texture_.getSize().y / 4);
+	hitbox.setRadius(texture_.getSize().y / 2);
 	hitbox.setOrigin(hitbox.getRadius(), hitbox.getRadius());
 	hitbox.setFillColor(sf::Color::Red);
 
@@ -34,7 +27,6 @@ Asteroid::Asteroid()
 	counter_++;
 
 }
-
 
 void Asteroid::Rotate()
 {

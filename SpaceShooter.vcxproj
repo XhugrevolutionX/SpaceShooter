@@ -129,6 +129,8 @@
   <ItemGroup>
     <ClCompile Include="Asteroid.cc" />
     <ClCompile Include="AsteroidManager.cc" />
+    <ClCompile Include="Enemy.cc" />
+    <ClCompile Include="EnemyManager.cc" />
     <ClCompile Include="Entity.cc" />
     <ClCompile Include="Game.cc" />
     <ClCompile Include="Main.cc" />
@@ -139,6 +141,8 @@
   <ItemGroup>
     <ClInclude Include="Asteroid.h" />
     <ClInclude Include="AsteroidManager.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Player.h" />

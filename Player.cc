@@ -37,7 +37,7 @@ void player::Damage(sf::Text& player_hp_display)
 	player_hp_display.setString(str);
 
 }
-void player::CheckAsteroidCollisions(std::vector<Asteroid>& asteroids_, sf::Text& player_hp_)
+void player::CheckCollisions(std::vector<Asteroid>& asteroids_, sf::Text& player_hp_)
 {
 	
 	for (auto& a : asteroids_)
@@ -50,6 +50,32 @@ void player::CheckAsteroidCollisions(std::vector<Asteroid>& asteroids_, sf::Text
 	}
 
 }
+
+void player::CheckCollisions(std::vector<Enemy>& enemies, sf::Text& player_hp_)
+{
+	for (auto&e : enemies)
+	{
+		if (IsDead() == false && e.IsDead() == false && Intersects(e.HitBox()))
+		{
+			Damage(player_hp_);
+			e.Damage(10);
+		}
+	}
+
+}
+
+void player::CheckCollisions(std::vector<Projectile>& projectiles, sf::Text& player_hp_)
+{
+	for (auto& p : projectiles)
+	{
+		if (IsDead() == false && p.IsDead() == false && Intersects(p.HitBox()))
+		{
+			Damage(player_hp_);
+			p.SetDeath();
+		}
+	}
+}
+
 
 void player::movePlayer(sf::Vector2f direction, float dt, const sf::Vector2u& window_size)
 {

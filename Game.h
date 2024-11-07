@@ -2,6 +2,8 @@
 #define GAME_H
 
 #include "AsteroidManager.h"
+#include "Enemy.h"
+#include "EnemyManager.h"
 #include "Player.h"
 #include "projectile_manager.h"
 
@@ -10,9 +12,11 @@ class Game
 {
 private:
 	sf::RenderWindow window;
-	ProjectileManager projectiles_;
+	ProjectileManager player_projectiles_;
+	ProjectileManager enemy_projectiles_;
 	AsteroidManager asteroids_;
-	player player;
+	EnemyManager enemies_;
+	player player_;
 	sf::Texture backgroud_texture;
 	sf::Sprite background_1;
 	sf::Sprite background_2;
@@ -28,8 +32,12 @@ public:
 
 	Game();
 	void Loop();
-	void draw();
+
+	void Refresh();
+
 	void CheckCollisions();
+	void draw();
+
 };
 
 #endif // GAME_H

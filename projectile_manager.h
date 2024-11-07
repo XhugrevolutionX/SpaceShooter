@@ -5,6 +5,8 @@
 #include "SFML/Audio.hpp"
 #include "Projectile.h"
 #include <vector>
+
+#include "Enemy.h"
 #include "Player.h"
 
 
@@ -16,9 +18,12 @@ private:
 	sf::SoundBuffer sfx;
 public:
 	ProjectileManager();
-	void Spawn(sf::Vector2f spawn_position);
+
+	std::vector<Projectile>& GetEntities() { return projectiles_; }
+	void Spawn(sf::Vector2f spawn_position, sf::Vector2f dir);
 	void Refresh(float dt_, const sf::Vector2u& window_size);
-	void CheckAsteroidCollisions(std::vector<Asteroid>& asteroids_, player& player, sf::Text& player_score_display);
+	void CheckCollisions(std::vector<Asteroid>& asteroids_, player& player, sf::Text& player_score_display);
+	void CheckCollisions(std::vector<Enemy>& enemies, player& player, sf::Text& player_score_display);
 
 
 protected:

@@ -10,7 +10,7 @@ class AsteroidManager : public sf::Drawable
 private:
 	std::vector<Asteroid> asteroids_;
 	sf::Clock timer_;
-	float time_elapsed_ = 0;
+	float spawn_timer = 0;
 
 public:
 

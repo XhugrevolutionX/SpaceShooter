@@ -14,6 +14,5 @@ Projectile::Projectile()
 	hitbox.setScale(0.5, 2);
 	hitbox.setFillColor(sf::Color::Red);
 
-	direction_ = { 0, -750 };
 	counter_++;
 }
