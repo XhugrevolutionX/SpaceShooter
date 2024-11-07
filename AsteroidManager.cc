@@ -44,7 +44,6 @@ void AsteroidManager::Refresh(float dt_, const sf::Vector2u& window_size)
 		a.Move(dt_, window_size);
 	}
 }
-
 void AsteroidManager::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	for (Asteroid e : asteroids_)
