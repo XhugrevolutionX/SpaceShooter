@@ -49,18 +49,27 @@ void Game::Loop()
 	player_score_display_.setString(str_score);
 
 	//Game loop
+	
 	while (window.isOpen() && !player_.IsDead())
 	{
-
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			//Closing the window
+			if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+			{
+				window.close();
+			}
+		}
 		window.clear();
 
 		//Background scrolling
-		if(background_1.getPosition().y >= window.getSize().y)
+		if (background_1.getPosition().y >= window.getSize().y)
 		{
 			background_1.setPosition(0, -static_cast<int>(window.getSize().y));
 			background_2.setPosition(0, 0);
 		}
-		else if(background_2.getPosition().y >= window.getSize().y)
+		else if (background_2.getPosition().y >= window.getSize().y)
 		{
 			background_2.setPosition(0, -static_cast<int>(window.getSize().y));
 			background_1.setPosition(0, 0);
@@ -71,16 +80,6 @@ void Game::Loop()
 
 
 		player_.set_state(0);
-
-		sf::Event event;
-		while (window.pollEvent(event))
-		{
-			//Closing the window
-			if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-			{
-				window.close();
-			}
-		}
 
 		//moving and shooting
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
@@ -110,7 +109,7 @@ void Game::Loop()
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && laser_cooldown > 0.25)
 		{
 
-			player_projectiles_.Spawn(player_.GetPosition(), { 0, -750 });
+			player_projectiles_.Spawn(player_.GetPosition(), { 0, -750 }, 0, 50);
 			laser_cooldown = 0;
 		}
 
@@ -119,7 +118,7 @@ void Game::Loop()
 
 		CheckCollisions();
 		draw();
-		
+
 		window.display();
 
 		laser_cooldown += dt;
@@ -145,6 +144,7 @@ void Game::Refresh()
 	enemy_projectiles_.Refresh(dt, window.getSize());
 	asteroids_.Refresh(dt, window.getSize());
 	enemies_.Refresh(dt, window.getSize(), enemy_projectiles_);
+	//death_animations_.Refresh(dt, window.getSize(), enemies_.GetEntities());
 }
 
 void Game::draw()
@@ -153,6 +153,7 @@ void Game::draw()
 	window.draw(background_2);
 	window.draw(asteroids_);
 	window.draw(enemies_);
+	//window.draw(death_animations_);
 	window.draw(player_projectiles_);
 	window.draw(enemy_projectiles_);
 	window.draw(player_);

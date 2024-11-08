@@ -3,7 +3,7 @@
 
 #include "Enemy.h"
 #include "Projectile.h"
-#include "Projectile_manager.h"
+#include "ProjectileManager.h"
 
 class EnemyManager : public sf::Drawable
 {

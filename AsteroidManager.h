@@ -18,7 +18,6 @@ public:
 
 	void Spawn(const sf::Vector2u& window_size);
 	std::vector<Asteroid>& GetEntities() { return asteroids_; }
-
 	void Refresh(float dt_, const sf::Vector2u& window_size);
 
 

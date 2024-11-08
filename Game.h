@@ -2,10 +2,10 @@
 #define GAME_H
 
 #include "AsteroidManager.h"
-#include "Enemy.h"
 #include "EnemyManager.h"
 #include "Player.h"
-#include "projectile_manager.h"
+#include "ProjectileManager.h"
+#include "DeathManager.h"
 
 
 class Game
@@ -16,6 +16,7 @@ private:
 	ProjectileManager enemy_projectiles_;
 	AsteroidManager asteroids_;
 	EnemyManager enemies_;
+	DeathManager death_animations_;
 	player player_;
 	sf::Texture backgroud_texture;
 	sf::Sprite background_1;

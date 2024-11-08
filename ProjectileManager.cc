@@ -1,4 +1,4 @@
-#include "projectile_manager.h"
+#include "ProjectileManager.h"
 
 #include <complex>
 
@@ -7,15 +7,16 @@ ProjectileManager::ProjectileManager()
 	sfx.loadFromFile("Assets/laser.mp3");
 
 }
-void ProjectileManager::Spawn(sf::Vector2f spawn_position, sf::Vector2f dir)
+void ProjectileManager::Spawn(sf::Vector2f spawn_position, sf::Vector2f dir, float angle, int volume)
 {
 
 	projectiles_.emplace_back();
 	projectiles_.back().SetPosition(spawn_position);
 	projectiles_.back().SetDirection(dir);
+	projectiles_.back().SetRotation(angle);
 
 	sound_projectile.setBuffer(sfx);
-	sound_projectile.setVolume(0);
+	sound_projectile.setVolume(volume);
 	sound_projectile.play();
 
 }

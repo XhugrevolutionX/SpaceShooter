@@ -14,6 +14,7 @@ private:
 public:
 	Projectile();
 	void SetDirection(sf::Vector2f dir) { direction_ = dir; }
+	void SetRotation(float angle) { setRotation(angle); }
 };
 
 #endif // PROJECTILE_H

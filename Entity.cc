@@ -1,15 +1,5 @@
 #include "Entity.h"
 
-Entity::Entity()
-{
-	int nb_sprites_death = 4;
-	death_anim.resize(nb_sprites_death);
-	for (int i = 0; i < nb_sprites_death; i++)
-	{
-		death_anim.at(i).loadFromFile("Assets/explosion" + std::to_string(i) + ".png");
-	}
-}
-
 void Entity::Move(float dt, const sf::Vector2u& window_size)
 {
 	if(!is_dead_)

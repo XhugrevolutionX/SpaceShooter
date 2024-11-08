@@ -10,6 +10,8 @@ protected:
 	sf::Vector2f direction_;
 	sf::Sprite sprite_;
 	bool is_dead_ = false;
+	bool is_really_dead = false;
+	bool is_first_dead_loop = true;
 
 	sf::CircleShape hitbox;
 
@@ -17,11 +19,13 @@ protected:
 
 
 public:
-
-	Entity();
 	void Move(float dt, const sf::Vector2u& window_size);
 	bool IsDead() const { return is_dead_; }
+	bool IsReallyDead() const { return is_really_dead; }
+	bool IsFirstDeadLoop() const { return is_first_dead_loop; }
 	void SetDeath() { is_dead_ = true; }
+	void SetRealDeath() { is_dead_ = true; }
+	void SetFirstDeathLoop() { is_first_dead_loop = false; }
 	bool Intersects(sf::FloatRect hitBox_);
 	sf::FloatRect HitBox();
 

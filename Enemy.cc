@@ -3,15 +3,14 @@
 int Enemy::counter_ = 0;
 sf::Texture Enemy::texture_;
 
-constexpr float kShootPeriod = 0.2f;
-constexpr float kBurstPeriod = 0.4f;
+constexpr float kShootPeriod = 0.3f;
+constexpr float kBurstPeriod = 0.6f;
 void Enemy::SetDeath()
 {
 	is_dead_ = true;
 }
 
-
-Enemy::Enemy()
+Enemy::Enemy(sf::Vector2f dir)
 {
 	texture_.loadFromFile("Assets/enemies.png");
 	sprite_.setTexture(texture_);
@@ -21,7 +20,7 @@ Enemy::Enemy()
 	hitbox.setOrigin(hitbox.getRadius(), hitbox.getRadius());
 	hitbox.setFillColor(sf::Color::Red);
 
-	direction_ = { 0, 150};
+	direction_ = dir;
 	counter_++;
 }
 

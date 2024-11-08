@@ -94,6 +94,7 @@ void player::draw(sf::RenderTarget& target, sf::RenderStates states) const
 
 	states.transform *= getTransform();
 	target.draw(sprites.at(get_state()), states);
+
 	////draw the hitbox
 	//target.draw(hitbox, states);
 
