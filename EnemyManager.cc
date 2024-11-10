@@ -27,7 +27,7 @@ void EnemyManager::Refresh(float dt_, const sf::Vector2u& window_size, Projectil
 	}
 
 	//Clean unused enemies
-	auto removed_elt = std::remove_if(enemies_.begin(), enemies_.end(), [](const Entity& e) { return e.IsDead(); });/*change to IsReallyDead*/
+	auto removed_elt = std::remove_if(enemies_.begin(), enemies_.end(), [](const Entity& e) { return e.IsReallyDead(); });
 	if (removed_elt != enemies_.end())
 	{
 		enemies_.erase(removed_elt, enemies_.end());

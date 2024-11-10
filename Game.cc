@@ -130,16 +130,12 @@ void Game::CheckCollisions()
 {
 	player_projectiles_.CheckCollisions(asteroids_.GetEntities(), player_, player_score_display_);
 	player_projectiles_.CheckCollisions(enemies_.GetEntities(), player_, player_score_display_);
-	  
-
-	player_.CheckCollisions(asteroids_.GetEntities(), player_hp_display_);
-	player_.CheckCollisions(enemies_.GetEntities(), player_hp_display_);
-	player_.CheckCollisions(enemy_projectiles_.GetEntities(), player_hp_display_);
 }
 
 
 void Game::Refresh()
 {
+	player_.Refresh(dt, asteroids_.GetEntities(), enemies_.GetEntities(), enemy_projectiles_.GetEntities(), player_hp_display_);
 	player_projectiles_.Refresh(dt, window.getSize());
 	enemy_projectiles_.Refresh(dt, window.getSize());
 	asteroids_.Refresh(dt, window.getSize());

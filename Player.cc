@@ -1,5 +1,6 @@
 #include "Player.h"
 
+float player::timer_ = 0;
 
 player::player()
 {
@@ -27,6 +28,7 @@ player::player()
 void player::Damage(sf::Text& player_hp_display)
 {
 	hp -= 1;
+	set_isHit(true);
 	if (hp <= 0)
 	{
 		SetDeath();
@@ -35,7 +37,6 @@ void player::Damage(sf::Text& player_hp_display)
 	std::string str = std::to_string(GetHp());
 	str.append(" Hp");
 	player_hp_display.setString(str);
-
 }
 void player::CheckCollisions(std::vector<Asteroid>& asteroids_, sf::Text& player_hp_)
 {
@@ -76,6 +77,26 @@ void player::CheckCollisions(std::vector<Projectile>& projectiles, sf::Text& pla
 	}
 }
 
+void player::Refresh(float dt, std::vector<Asteroid>& asteroids_, std::vector<Enemy>& enemies, std::vector<Projectile>& projectiles, sf::Text& player_hp_)
+{
+	if (!is_hit)
+	{
+		CheckCollisions(asteroids_, player_hp_);
+		CheckCollisions(enemies, player_hp_);
+		CheckCollisions(projectiles, player_hp_);
+	}
+	else
+	{
+		timer_ += dt * 10;
+		if (timer_ > 15)
+		{
+			set_isHit(false);
+			timer_ = 0;
+		}
+	}
+
+}
+
 
 void player::movePlayer(sf::Vector2f direction, float dt, const sf::Vector2u& window_size)
 {
@@ -91,9 +112,11 @@ void player::movePlayer(sf::Vector2f direction, float dt, const sf::Vector2u& wi
 }
 void player::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-
-	states.transform *= getTransform();
-	target.draw(sprites.at(get_state()), states);
+	if (!is_hit || static_cast<int>(timer_) % 2 == 0)
+	{
+		states.transform *= getTransform();
+		target.draw(sprites.at(get_state()), states);
+	}
 
 	////draw the hitbox
 	//target.draw(hitbox, states);

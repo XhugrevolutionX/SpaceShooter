@@ -12,11 +12,6 @@ DeathAnim::DeathAnim()
 	sprite_.setOrigin(sprite_.getTexture()->getSize().x / 2, sprite_.getTexture()->getSize().y / 2);
 }
 
-void DeathAnim::Refresh()
-{
-	sprite_.setTexture(death_anim_.at(state));
-}
-
 void DeathAnim::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	target.draw(sprite_);
