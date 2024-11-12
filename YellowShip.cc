@@ -24,11 +24,12 @@ YellowShip::YellowShip(sf::Vector2f dir)
 	hitbox.setOrigin(hitbox.getRadius(), hitbox.getRadius());
 	hitbox.setFillColor(sf::Color::Red);
 
-
 	hp = 5;
 	type = 1;
-	ShootPeriod = 0.6f;
-	BurstPeriod = 0.3f;
+	projectile_dir = {0, 750};
+	ShootSeparation = 0.5f;
+	BurstPeriod = 0.9f;
+	BurstSeparation = 0.3f;
 
 	direction_ = dir;
 	counter_++;

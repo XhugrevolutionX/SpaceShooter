@@ -57,6 +57,12 @@
     <ClCompile Include="YellowShip.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PurpleShip.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WhiteShip.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -96,6 +102,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="YellowShip.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PurpleShip.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WhiteShip.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,3 +1,4 @@
+
 #include "Enemy.h"
 
 void Enemy::SetDeath()
@@ -22,19 +23,26 @@ void Enemy::Damage(int damage)
 void Enemy::Refresh(float dt)
 {
 	shoot_dt_ += dt;
-	burst_dt_ += dt;
-	if (burst_dt_ >= BurstPeriod)
+	if (shoot_dt_ >= ShootSeparation)
 	{
-		wait_shoot = !wait_shoot;
-		burst_dt_ = 0;
+		burst_dt_ += dt;
+		if (burst_dt_ >= BurstSeparation)
+		{
+			wait_shoot = !wait_shoot;
+			burst_dt_ = 0;
+		}
 	}
 }
 
 bool Enemy::IsShootReady()
 {
-	if (shoot_dt_ >= ShootPeriod && !wait_shoot)
+	if (shoot_dt_ >= ShootSeparation && wait_shoot)
 	{
-		shoot_dt_ = 0;
+		if (shoot_dt_ >= ShootSeparation + BurstPeriod)
+		{
+			shoot_dt_ = 0;
+		}
+		wait_shoot = !wait_shoot;
 		return true;
 	}
 	return false;

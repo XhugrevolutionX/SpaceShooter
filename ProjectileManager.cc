@@ -87,6 +87,12 @@ void ProjectileManager::CheckCollisions(std::vector<Enemy>& enemies, player& pla
 						player.SetScore(10);
 						break;
 					case 1:
+						player.SetScore(40);
+						break;
+					case 2:
+						player.SetScore(30);
+						break;
+					case 3:
 						player.SetScore(20);
 						break;
 					default:

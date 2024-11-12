@@ -1,9 +1,8 @@
-#ifndef GREENSHIP_H
-#define GREENSHIP_H
+#ifndef PURPLESHIP_H
+#define PURPLESHIP_H
 #include "Enemy.h"
 
-
-class GreenShip : public Enemy
+class PurpleShip : public Enemy
 {
 private:
 	static int counter_;
@@ -12,12 +11,12 @@ private:
 	static std::vector<sf::Texture> textures_;
 
 
-public :
+public:
 	void SetState(int s) { sprite_.setTexture(textures_.at(s)); state_ = s; }
+
 	int GetState() const { return state_; }
-	GreenShip(sf::Vector2f dir);
+	PurpleShip(sf::Vector2f dir);
 
 };
 
-#endif // GREENSHIP_H
-
+#endif // PURPLESHIP_H

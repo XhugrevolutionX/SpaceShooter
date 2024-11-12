@@ -140,6 +140,8 @@
     <ClCompile Include="Player.cc" />
     <ClCompile Include="Projectile.cc" />
     <ClCompile Include="ProjectileManager.cc" />
+    <ClCompile Include="PurpleShip.cc" />
+    <ClCompile Include="WhiteShip.cc" />
     <ClCompile Include="YellowShip.cc" />
   </ItemGroup>
   <ItemGroup>
@@ -155,6 +157,8 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="ProjectileManager.h" />
+    <ClInclude Include="PurpleShip.h" />
+    <ClInclude Include="WhiteShip.h" />
     <ClInclude Include="YellowShip.h" />
   </ItemGroup>
   <ItemGroup>

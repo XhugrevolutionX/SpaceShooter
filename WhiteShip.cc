@@ -1,9 +1,9 @@
-#include "GreenShip.h"
+#include "WhiteShip.h"
 
-int GreenShip::counter_ = 0;
-std::vector<sf::Texture> GreenShip::textures_;
+int WhiteShip::counter_ = 0;
+std::vector<sf::Texture> WhiteShip::textures_;
 
-GreenShip::GreenShip(sf::Vector2f dir)
+WhiteShip::WhiteShip(sf::Vector2f dir)
 {
 	sf::Vector2i pos = { 0, 0 };
 	sf::Vector2i size = { 64, 64 };
@@ -13,7 +13,7 @@ GreenShip::GreenShip(sf::Vector2f dir)
 
 	for (int i = 0; i < nb_sprites; i++)
 	{
-		textures_.at(i).loadFromFile("Assets/enemies.png", sf::IntRect(pos.x + i * size.x, pos.y, size.x, size.y));
+		textures_.at(i).loadFromFile("Assets/enemies4.png", sf::IntRect(pos.x + i * size.x, pos.y, size.x, size.y));
 	}
 	sprite_.setTexture(textures_.at(0));
 	sprite_.setOrigin(size.x / 2, size.y / 2);
@@ -24,9 +24,9 @@ GreenShip::GreenShip(sf::Vector2f dir)
 
 
 	hp = 5;
-	type = 0;
-	projectile_dir = { 300, 750 };
-	ShootSeparation = 0.75f;
+	type = 3;
+	projectile_dir = { -500, 750 };
+	ShootSeparation = 0.4f;
 	BurstPeriod = 0.f;
 	BurstSeparation = 0.f;
 

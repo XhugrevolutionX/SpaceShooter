@@ -8,7 +8,7 @@ class player : public Entity
 {
 
 private:
-	int hp = 1;
+	int hp = 10;
 	int score = 0;
 	int state = 0;
 	sf::Sprite sprite;

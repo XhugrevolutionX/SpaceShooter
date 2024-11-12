@@ -14,8 +14,11 @@ protected:
 	float burst_dt_ = 0.f;
 	bool wait_shoot = false;
 
-	float ShootPeriod = 0.f;
+	float ShootSeparation = 0.f;
 	float BurstPeriod = 0.f;
+	float BurstSeparation = 0.f;
+
+	sf::Vector2f projectile_dir;
 
 	void SetDeath();
 	void SetRealDeath();
@@ -24,6 +27,8 @@ public:
 
 
 	Enemy() = default;
+	sf::Vector2f GetProjectileDir() const { return projectile_dir; }
+	void SetProjectileDir(sf::Vector2f dir_) { projectile_dir = dir_; }
 	int GetType() const { return type; }
 	void Damage(int damage);
 	void Refresh(float dt);
