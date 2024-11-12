@@ -1,14 +1,16 @@
 #ifndef ENEMYMANAGER_H
 #define ENEMYMANAGER_H
 
-#include "Enemy.h"
-#include "Projectile.h"
+#include "GreenShip.h"
+#include "YellowShip.h"
 #include "ProjectileManager.h"
 
 class EnemyManager : public sf::Drawable
 {
 private:
 	std::vector<Enemy> enemies_;
+	std::vector<GreenShip> green_ships_;
+	std::vector<YellowShip> yellow_ships_;
 	float spawn_timer = 0;
 public:
 

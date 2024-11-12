@@ -39,7 +39,7 @@
     <ClCompile Include="AsteroidManager.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy.cc">
+    <ClCompile Include="GreenShip.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="EnemyManager.cc">
@@ -49,6 +49,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DeathAnim.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="YellowShip.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -74,7 +80,7 @@
     <ClInclude Include="AsteroidManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy.h">
+    <ClInclude Include="GreenShip.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="EnemyManager.h">
@@ -84,6 +90,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DeathAnim.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="YellowShip.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

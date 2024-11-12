@@ -11,9 +11,18 @@ void ProjectileManager::Spawn(sf::Vector2f spawn_position, sf::Vector2f dir, flo
 {
 
 	projectiles_.emplace_back(projectile_type);
-	projectiles_.back().SetPosition(spawn_position);
 	projectiles_.back().SetDirection(dir);
 	projectiles_.back().SetRotation(angle);
+
+	if (dir.y > 0)
+	{
+		projectiles_.back().SetPosition({ spawn_position.x, spawn_position.y + (projectiles_.back().HitBox().getSize().y / 2) });
+	}
+	else
+	{
+		projectiles_.back().SetPosition({ spawn_position.x, spawn_position.y - (projectiles_.back().HitBox().getSize().y / 2) });
+	}
+
 
 	sound_projectile.setVolume(volume);
 	sound_projectile.play();
@@ -72,7 +81,19 @@ void ProjectileManager::CheckCollisions(std::vector<Enemy>& enemies, player& pla
 				e.Damage(1);
 				if (e.IsDead())
 				{
-					player.SetScore(10);
+					switch (e.GetType())
+					{
+					case 0:
+						player.SetScore(10);
+						break;
+					case 1:
+						player.SetScore(20);
+						break;
+					default:
+						break;
+					}
+
+	
 				}
 			}
 		}

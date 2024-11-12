@@ -1,6 +1,4 @@
 #include "EnemyManager.h"
-
-#include "ProjectileManager.h"
 #include "random"
 
 
@@ -15,24 +13,42 @@ void EnemyManager::Refresh(float dt_, const sf::Vector2u& window_size, Projectil
 	spawn_timer += dt_;
 	if (spawn_timer > kSpawnPeriod)
 	{
-		std::uniform_real_distribution<float> uniform_dist_dir(-50, 50);
+		std::uniform_real_distribution<float> rng_enemies(0, 2);
+		int enemy_type = static_cast<int>(rng_enemies(engine));
 
-		float rnd_dir_x = uniform_dist_dir(engine);
-		sf::Vector2f dir = { rnd_dir_x, 200 };
-		enemies_.emplace_back(dir);
+		switch (enemy_type)
+		{
+		case 0:
 
-		//if (rnd_dir_x > 0)
-		//{
-		//	enemies_.back().SetState(1);
-		//}
-		//else if (rnd_dir_x < 0)
-		//{
-		//	enemies_.back().SetState(2);
-		//}
-		//else
-		//{
-		//	enemies_.back().SetState(0);
-		//}
+			green_ships_.emplace_back();
+
+			enemies_.emplace_back(green_ships_.back());
+			break;
+
+		case 1:
+
+			std::uniform_real_distribution<float> yellow_ship_rng_dir_x(-50, 50);
+			float yellow_dir_x = yellow_ship_rng_dir_x(engine);
+			sf::Vector2f yellow_dir = { yellow_dir_x, 200 };
+			yellow_ships_.emplace_back(yellow_dir);
+
+			//if (yellow_dir_x > 0)
+			//{
+			//	yellow_ships_.back().SetState(1);
+			//}
+			//else if (yellow_dir_x < 0)
+			//{
+			//	yellow_ships_.back().SetState(2);
+			//}
+			//else
+			//{
+			//	yellow_ships_.back().SetState(0);
+			//}
+
+			enemies_.emplace_back(yellow_ships_.back());
+
+			break;
+		}
 
 		std::uniform_real_distribution<float> uniform_dist_pos(0, window_size.x);
 		enemies_.back().SetPosition(uniform_dist_pos(engine), 0);
@@ -41,7 +57,7 @@ void EnemyManager::Refresh(float dt_, const sf::Vector2u& window_size, Projectil
 	}
 
 	//Clean unused enemies
-	auto removed_elt = std::remove_if(enemies_.begin(), enemies_.end(), [](const Entity& e) { return e.IsReallyDead(); });
+	auto removed_elt = std::remove_if(enemies_.begin(), enemies_.end(), [](const Enemy& e) { return e.IsReallyDead(); });
 	if (removed_elt != enemies_.end())
 	{
 		enemies_.erase(removed_elt, enemies_.end());
@@ -57,10 +73,31 @@ void EnemyManager::Refresh(float dt_, const sf::Vector2u& window_size, Projectil
 
 			if (e.IsShootReady())
 			{
-				float dir_y = 750;
+				std::random_device rn_device;
+				std::default_random_engine engine(rn_device());
 				std::uniform_real_distribution<float> enemy_projectiles_angle(-300, 300);
-				float dir_x = enemy_projectiles_angle(engine);
-				enemy_projectiles_.Spawn(e.GetPosition(), { dir_x, dir_y }, 180 - (atan(dir_x / dir_y) * 180 / 3.1415), 10,1);
+				float yellow_dir_x = enemy_projectiles_angle(engine);
+				float green_dir_x = 300;
+				float dir_y = 750;
+
+
+				switch (e.GetType())
+				{
+				case 0:
+
+					enemy_projectiles_.Spawn(e.GetPosition(), { green_dir_x, dir_y }, 180 - (atan(300 / dir_y) * 180 / 3.1415), 10, 1);
+					enemy_projectiles_.Spawn(e.GetPosition(), { -green_dir_x, dir_y }, 180 - (atan(-300 / dir_y) * 180 / 3.1415), 10, 1);
+
+					break;
+
+				case 1:
+
+					enemy_projectiles_.Spawn(e.GetPosition(), { yellow_dir_x, dir_y }, 180 - (atan(yellow_dir_x / dir_y) * 180 / 3.1415), 10, 2);
+					break;
+
+				default:
+					break;
+				}
 			}
 		}
 	}

@@ -132,6 +132,7 @@
     <ClCompile Include="DeathAnim.cc" />
     <ClCompile Include="DeathManager.cc" />
     <ClCompile Include="Enemy.cc" />
+    <ClCompile Include="GreenShip.cc" />
     <ClCompile Include="EnemyManager.cc" />
     <ClCompile Include="Entity.cc" />
     <ClCompile Include="Game.cc" />
@@ -139,6 +140,7 @@
     <ClCompile Include="Player.cc" />
     <ClCompile Include="Projectile.cc" />
     <ClCompile Include="ProjectileManager.cc" />
+    <ClCompile Include="YellowShip.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Asteroid.h" />
@@ -146,12 +148,14 @@
     <ClInclude Include="DeathAnim.h" />
     <ClInclude Include="DeathManager.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="GreenShip.h" />
     <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="ProjectileManager.h" />
+    <ClInclude Include="YellowShip.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Player0.png" />

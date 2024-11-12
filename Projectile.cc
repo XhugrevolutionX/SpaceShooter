@@ -11,9 +11,9 @@ Projectile::Projectile(int projectile_type)
 	textures_.at(2).loadFromFile("Assets/laser_yellow.png");
 
 	sprite_.setTexture(textures_.at(projectile_type));
-	sprite_.setOrigin(textures_.at(0).getSize().x / 2, textures_.at(0).getSize().y);
+	sprite_.setOrigin(textures_.at(projectile_type).getSize().x / 2, textures_.at(projectile_type).getSize().y / 2);
 
-	hitbox.setRadius(textures_.at(0).getSize().y / 4);
+	hitbox.setRadius(textures_.at(projectile_type).getSize().x / 2);
 	hitbox.setOrigin(hitbox.getRadius(), hitbox.getRadius());
 	hitbox.setScale(0.25, 1);
 	hitbox.setFillColor(sf::Color::Red);
