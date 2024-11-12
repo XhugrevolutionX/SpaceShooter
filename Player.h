@@ -8,13 +8,14 @@ class player : public Entity
 {
 
 private:
-	int hp = 20;
+	int hp = 1;
 	int score = 0;
 	int state = 0;
 	sf::Sprite sprite;
 	std::vector<sf::Texture> textures;
 	const float speed = 500.0f;
 	bool is_hit = false;
+	bool death_end_ = false;
 	static float timer_;
 
 public:
@@ -22,6 +23,8 @@ public:
 	player();
 	void set_isHit(bool hit_) { is_hit = hit_; }
 	bool get_isHit() const { return is_hit; }
+	void set_EndDeath() { death_end_ = true; }
+	bool is_death_ended() const { return death_end_; }
 	void set_state(int state_) { sprite.setTexture(textures.at(state_)); state = state_; }
 	int get_state() const { return state; }
 	int GetHp() const { return hp; }

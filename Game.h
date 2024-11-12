@@ -27,17 +27,17 @@ private:
 	sf::Text player_score_display_;
 
 	sf::Clock clock;
-	float dt = 0.0f;
+	float dt = 0.f;
+	float time_played = 0.f;
 public:
 
 
 	Game();
 	void Loop();
-
 	void Refresh();
-
 	void CheckCollisions();
 	void draw();
+	void EndGame();
 
 };
 

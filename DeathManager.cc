@@ -8,8 +8,26 @@ DeathManager::DeathManager()
 	sound_explosion.setVolume(50);
 }
 
-void DeathManager::Refresh(float dt_, const sf::Vector2u& window_size, std::vector<Enemy>& enemies_)
+void DeathManager::Refresh(float dt_, const sf::Vector2u& window_size, std::vector<Enemy>& enemies_, player& player_)
 {
+	if (player_.IsDead())
+	{
+		if (!player_.IsReallyDead())
+		{
+			death_animations_.emplace_back();
+			death_animations_.back().SetPosition(player_.GetPosition());
+
+			sound_explosion.play();
+
+			player_.SetRealDeath();
+		}
+		if (death_animations_.empty())
+		{
+			player_.set_EndDeath();
+		}
+
+	}
+
 	for (Entity& e : enemies_)
 	{
 		if (e.IsDead() && !e.IsOffScreen() && !e.IsReallyDead())

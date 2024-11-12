@@ -158,12 +158,41 @@
     <ClInclude Include="YellowShip.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Assets\Asteroid.png" />
+    <Image Include="Assets\Background.png" />
+    <Image Include="Assets\bonus_life.png" />
+    <Image Include="Assets\bonus_shield.png" />
+    <Image Include="Assets\boss.png" />
+    <Image Include="Assets\boss2.png" />
+    <Image Include="Assets\boss3.png" />
+    <Image Include="Assets\boss4.png" />
+    <Image Include="Assets\enemies.png" />
+    <Image Include="Assets\enemies2.png" />
+    <Image Include="Assets\enemies3.png" />
+    <Image Include="Assets\enemies4.png" />
+    <Image Include="Assets\explosion0.png" />
+    <Image Include="Assets\explosion1.png" />
+    <Image Include="Assets\explosion2.png" />
+    <Image Include="Assets\explosion3.png" />
+    <Image Include="Assets\laser_blue.png" />
+    <Image Include="Assets\laser_red.png" />
+    <Image Include="Assets\laser_yellow.png" />
     <Image Include="Assets\Player0.png" />
     <Image Include="Assets\Player1.png" />
     <Image Include="Assets\Player2.png" />
+    <Image Include="Assets\red_ship.png" />
+    <Image Include="Assets\shield.png" />
     <Image Include="Assets\ship.png" />
     <Image Include="Assets\ship_left.png" />
     <Image Include="Assets\ship_right.png" />
+    <Image Include="Assets\SmallAsteroid.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Assets\BrownieStencil.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Assets\explosion.mp3" />
+    <Media Include="Assets\laser.mp3" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

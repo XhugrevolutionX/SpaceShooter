@@ -110,11 +110,15 @@ void player::movePlayer(sf::Vector2f direction, float dt, const sf::Vector2u& wi
 }
 void player::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-	if (!is_hit || static_cast<int>(timer_) % 2 == 0)
+	if (!is_really_dead_)
 	{
-		states.transform *= getTransform();
-		target.draw(sprite, states);
+		if (!is_hit || static_cast<int>(timer_) % 2 == 0)
+		{
+			states.transform *= getTransform();
+			target.draw(sprite, states);
+		}
 	}
+
 
 	////draw the hitbox
 	//target.draw(hitbox, states);

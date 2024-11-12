@@ -48,8 +48,9 @@ void Game::Loop()
 
 	//Game loop
 	
-	while (window.isOpen() && !player_.IsDead())
+	while (window.isOpen())
 	{
+		window.clear();
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
@@ -59,68 +60,73 @@ void Game::Loop()
 				window.close();
 			}
 		}
-		window.clear();
+		if (!player_.is_death_ended())
+		{
+			//Background scrolling
+			if (background_1.getPosition().y >= window.getSize().y)
+			{
+				background_1.setPosition(0, -static_cast<int>(window.getSize().y));
+				background_2.setPosition(0, 0);
+			}
+			else if (background_2.getPosition().y >= window.getSize().y)
+			{
+				background_2.setPosition(0, -static_cast<int>(window.getSize().y));
+				background_1.setPosition(0, 0);
+			}
 
-		//Background scrolling
-		if (background_1.getPosition().y >= window.getSize().y)
-		{
-			background_1.setPosition(0, -static_cast<int>(window.getSize().y));
-			background_2.setPosition(0, 0);
-		}
-		else if (background_2.getPosition().y >= window.getSize().y)
-		{
-			background_2.setPosition(0, -static_cast<int>(window.getSize().y));
-			background_1.setPosition(0, 0);
-		}
-
-		background_1.setPosition(background_1.getPosition().x, background_1.getPosition().y + 200 * dt);
-		background_2.setPosition(background_2.getPosition().x, background_2.getPosition().y + 200 * dt);
+			background_1.setPosition(background_1.getPosition().x, background_1.getPosition().y + 200 * dt);
+			background_2.setPosition(background_2.getPosition().x, background_2.getPosition().y + 200 * dt);
 
 
-		player_.set_state(0);
-
-		//moving and shooting
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-		{
-			player_.movePlayer(sf::Vector2f(0, -1), dt, window.getSize());
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-		{
-			player_.movePlayer(sf::Vector2f(0, 1), dt, window.getSize());
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-		{
-			player_.movePlayer(sf::Vector2f(-1, 0), dt, window.getSize());
-			player_.set_state(1);
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-		{
-			player_.movePlayer(sf::Vector2f(1, 0), dt, window.getSize());
-			player_.set_state(2);
-
-		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::D) && sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-		{
 			player_.set_state(0);
 
+			//moving and shooting
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+			{
+				player_.movePlayer(sf::Vector2f(0, -1), dt, window.getSize());
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) || sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+			{
+				player_.movePlayer(sf::Vector2f(0, 1), dt, window.getSize());
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+			{
+				player_.movePlayer(sf::Vector2f(-1, 0), dt, window.getSize());
+				player_.set_state(1);
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+			{
+				player_.movePlayer(sf::Vector2f(1, 0), dt, window.getSize());
+				player_.set_state(2);
+
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && sf::Keyboard::isKeyPressed(sf::Keyboard::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::D) && sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+			{
+				player_.set_state(0);
+
+			}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && laser_cooldown > 0.25)
+			{
+
+				player_projectiles_.Spawn(player_.GetPosition(), { 0, -750 }, 0, 50, 0);
+				laser_cooldown = 0;
+			}
+
+			Refresh();
+			CheckCollisions();
+			draw();
+
+			laser_cooldown += dt;
+			time_played += dt;
+			dt = clock.restart().asSeconds();
 		}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && laser_cooldown > 0.25)
+		else 
 		{
-
-			player_projectiles_.Spawn(player_.GetPosition(), { 0, -750 }, 0, 50, 0);
-			laser_cooldown = 0;
+			draw();
+			EndGame();
 		}
-
-
-		Refresh();
-
-		CheckCollisions();
-		draw();
 
 		window.display();
-
-		laser_cooldown += dt;
-		dt = clock.restart().asSeconds();
 	}
 }
 
@@ -137,7 +143,7 @@ void Game::Refresh()
 	player_projectiles_.Refresh(dt, window.getSize());
 	enemy_projectiles_.Refresh(dt, window.getSize());
 	asteroids_.Refresh(dt, window.getSize());
-	death_animations_.Refresh(dt, window.getSize(), enemies_.GetEntities());
+	death_animations_.Refresh(dt, window.getSize(), enemies_.GetEntities(), player_);
 	enemies_.Refresh(dt, window.getSize(), enemy_projectiles_);
 }
 
@@ -155,3 +161,50 @@ void Game::draw()
 	window.draw(player_score_display_);
 }
 
+
+void Game::EndGame()
+{
+	float window_width = window.getSize().x;
+	float window_height = window.getSize().y;
+	sf::Vector2f rect_size = { window_width / 4, window_height / 6 };
+
+	sf::RectangleShape rect;
+	rect.setSize(rect_size);
+	rect.setOrigin(rect_size.x / 2, rect_size.y / 2);
+	rect.setFillColor(sf::Color::Black);
+	rect.setOutlineColor(sf::Color::White);
+	rect.setOutlineThickness(1);
+	rect.setPosition(window_width / 2, window_height / 2);
+
+	sf::Font font;
+	font.loadFromFile("Assets/BrownieStencil.ttf");
+
+	sf::Text game_over;
+	sf::Text info;
+	std::string info_string;
+
+	game_over.setFont(font);
+	info.setFont(font);
+
+	game_over.setCharacterSize(40);
+	info.setCharacterSize(20);
+
+	info_string.append("You survived ");
+	info_string.append(std::to_string(static_cast<int>(time_played)));
+	info_string.append(" seconds\nYou scored ");
+	info_string.append(std::to_string(player_.GetScore()));
+	info_string.append(" Points");
+
+	game_over.setString("Game Over");
+	info.setString(info_string);
+
+	game_over.setOrigin(game_over.getGlobalBounds().width / 2, game_over.getGlobalBounds().height / 2);
+	info.setOrigin(info.getGlobalBounds().width / 2, info.getGlobalBounds().height / 2);
+
+	game_over.setPosition({ rect.getPosition().x, rect.getPosition().y - (rect_size.y/4)});
+	info.setPosition({ rect.getPosition().x, rect.getPosition().y + (rect_size.y / 4) });
+
+	window.draw(rect);
+	window.draw(game_over);
+	window.draw(info);
+}

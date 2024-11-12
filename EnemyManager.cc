@@ -3,7 +3,7 @@
 
 
 
-constexpr float kSpawnPeriod = 1.5f;
+constexpr float kSpawnPeriod = 2.f;
 
 void EnemyManager::Refresh(float dt_, const sf::Vector2u& window_size, ProjectileManager& enemy_projectiles_)
 {

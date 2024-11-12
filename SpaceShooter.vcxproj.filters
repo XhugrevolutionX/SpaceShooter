@@ -118,5 +118,78 @@
     <Image Include="Assets\ship_right.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="Assets\Asteroid.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\Background.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\bonus_life.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\bonus_shield.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\boss.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\boss2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\boss3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\boss4.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\enemies.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\enemies2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\enemies3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\enemies4.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\explosion0.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\explosion1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\explosion2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\explosion3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\laser_blue.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\laser_red.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\laser_yellow.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\red_ship.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\shield.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Assets\SmallAsteroid.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Assets\BrownieStencil.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="Assets\explosion.mp3" />
+    <Media Include="Assets\laser.mp3" />
   </ItemGroup>
 </Project>
