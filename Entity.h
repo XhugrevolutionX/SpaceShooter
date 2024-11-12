@@ -11,6 +11,7 @@ protected:
 	sf::Sprite sprite_;
 	bool is_dead_ = false;
 	bool is_really_dead_ = false;
+	bool is_off_screen_ = false;
 
 	sf::CircleShape hitbox;
 
@@ -21,8 +22,11 @@ public:
 	void Move(float dt, const sf::Vector2u& window_size);
 	bool IsDead() const { return is_dead_; }
 	bool IsReallyDead() const { return is_really_dead_; }
+	bool IsOffScreen() const { return is_off_screen_; }
 	void SetDeath() { is_dead_ = true; }
 	void SetRealDeath() { is_really_dead_ = true; }
+
+	void SetOffScreen() { is_off_screen_ = true; SetDeath(); }
 	bool Intersects(sf::FloatRect hitBox_);
 	sf::FloatRect HitBox();
 

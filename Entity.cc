@@ -13,7 +13,7 @@ void Entity::Move(float dt, const sf::Vector2u& window_size)
 
 	if (pos.x < -1 * borders.x || pos.x > window_size.x + borders.x || pos.y < -1 * borders.y || pos.y > window_size.y + borders.y)
 	{
-		is_dead_ = true;
+		SetOffScreen();
 	}
 
 }

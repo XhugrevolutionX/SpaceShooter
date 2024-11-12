@@ -13,11 +13,11 @@ private:
 	sf::Sprite sprite_;
 	int state = 0;
 	bool is_finished = false;
-	float delay;
+	float delay = 0;
 
 public:
 	DeathAnim();
-	void SetState(int i) { state = i; sprite_.setTexture(death_anim_.at(state));}
+	void SetState(int i) {sprite_.setTexture(death_anim_.at(i)); state = i;}
 	void SetPosition(sf::Vector2f pos) { sprite_.setPosition(pos); }
 	void SetDelay(float d) { delay = d; }
 	float GetDelay() const { return delay; }

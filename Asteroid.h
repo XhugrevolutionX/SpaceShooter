@@ -7,7 +7,7 @@ class Asteroid : public Entity
 {
 
 private:
-	static sf::Texture texture_;
+	static std::vector<sf::Texture> textures_;
 	static int counter_;
 
 public:

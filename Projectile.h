@@ -8,11 +8,11 @@ class Projectile : public Entity
 {
 
 private:
-	static sf::Texture texture_;
+	static std::vector<sf::Texture> textures_;
 	static int counter_;
 
 public:
-	Projectile();
+	Projectile(int projectiles_type);
 	void SetDirection(sf::Vector2f dir) { direction_ = dir; }
 	void SetRotation(float angle) { setRotation(angle); }
 };

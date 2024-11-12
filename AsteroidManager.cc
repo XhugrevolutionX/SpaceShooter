@@ -31,7 +31,7 @@ void AsteroidManager::Refresh(float dt_, const sf::Vector2u& window_size)
 	}
 
 	//Clean unused projectiles
-	auto removed_elt = std::remove_if(asteroids_.begin(), asteroids_.end(), [](const Entity& p) { return p.IsDead(); });
+	auto removed_elt = std::remove_if(asteroids_.begin(), asteroids_.end(), [](const Entity& e) { return e.IsDead(); });
 	if (removed_elt != asteroids_.end())
 	{
 		asteroids_.erase(removed_elt, asteroids_.end());

@@ -32,8 +32,6 @@ Game::Game()
 	player_score_display_.setPosition(window.getSize().x / 20 * 18, window.getSize().y / 25 * 2);
 	player_score_display_.setCharacterSize(25);
 	player_score_display_.setFillColor(sf::Color::Red);
-
-	//enemy_.SetPosition(window.getSize().x / 2, 0);
 }
 
 void Game::Loop()
@@ -109,7 +107,7 @@ void Game::Loop()
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && laser_cooldown > 0.25)
 		{
 
-			player_projectiles_.Spawn(player_.GetPosition(), { 0, -750 }, 0, 50);
+			player_projectiles_.Spawn(player_.GetPosition(), { 0, -750 }, 0, 50, 0);
 			laser_cooldown = 0;
 		}
 
@@ -139,8 +137,8 @@ void Game::Refresh()
 	player_projectiles_.Refresh(dt, window.getSize());
 	enemy_projectiles_.Refresh(dt, window.getSize());
 	asteroids_.Refresh(dt, window.getSize());
+	death_animations_.Refresh(dt, window.getSize(), enemies_.GetEntities());
 	enemies_.Refresh(dt, window.getSize(), enemy_projectiles_);
-	//death_animations_.Refresh(dt, window.getSize(), enemies_.GetEntities());
 }
 
 void Game::draw()
@@ -149,7 +147,7 @@ void Game::draw()
 	window.draw(background_2);
 	window.draw(asteroids_);
 	window.draw(enemies_);
-	//window.draw(death_animations_);
+	window.draw(death_animations_);
 	window.draw(player_projectiles_);
 	window.draw(enemy_projectiles_);
 	window.draw(player_);

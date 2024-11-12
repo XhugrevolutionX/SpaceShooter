@@ -16,9 +16,23 @@ void EnemyManager::Refresh(float dt_, const sf::Vector2u& window_size, Projectil
 	if (spawn_timer > kSpawnPeriod)
 	{
 		std::uniform_real_distribution<float> uniform_dist_dir(-50, 50);
-		sf::Vector2f dir = { uniform_dist_dir(engine), 200};
 
+		float rnd_dir_x = uniform_dist_dir(engine);
+		sf::Vector2f dir = { rnd_dir_x, 200 };
 		enemies_.emplace_back(dir);
+
+		//if (rnd_dir_x > 0)
+		//{
+		//	enemies_.back().SetState(1);
+		//}
+		//else if (rnd_dir_x < 0)
+		//{
+		//	enemies_.back().SetState(2);
+		//}
+		//else
+		//{
+		//	enemies_.back().SetState(0);
+		//}
 
 		std::uniform_real_distribution<float> uniform_dist_pos(0, window_size.x);
 		enemies_.back().SetPosition(uniform_dist_pos(engine), 0);
@@ -46,7 +60,7 @@ void EnemyManager::Refresh(float dt_, const sf::Vector2u& window_size, Projectil
 				float dir_y = 750;
 				std::uniform_real_distribution<float> enemy_projectiles_angle(-300, 300);
 				float dir_x = enemy_projectiles_angle(engine);
-				enemy_projectiles_.Spawn(e.GetPosition(), { dir_x, dir_y }, 180 - (atan(dir_x / dir_y) * 180 / 3.1415), 0);
+				enemy_projectiles_.Spawn(e.GetPosition(), { dir_x, dir_y }, 180 - (atan(dir_x / dir_y) * 180 / 3.1415), 10,1);
 			}
 		}
 	}

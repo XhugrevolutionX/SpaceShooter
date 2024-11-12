@@ -11,7 +11,7 @@ private:
 	int hp = 20;
 	int score = 0;
 	int state = 0;
-	std::vector<sf::Sprite> sprites;
+	sf::Sprite sprite;
 	std::vector<sf::Texture> textures;
 	const float speed = 500.0f;
 	bool is_hit = false;
@@ -22,7 +22,7 @@ public:
 	player();
 	void set_isHit(bool hit_) { is_hit = hit_; }
 	bool get_isHit() const { return is_hit; }
-	void set_state(int state_) { state = state_; }
+	void set_state(int state_) { sprite.setTexture(textures.at(state_)); state = state_; }
 	int get_state() const { return state; }
 	int GetHp() const { return hp; }
 	void SetScore(int s) { score += s; }

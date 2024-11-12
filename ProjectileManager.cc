@@ -5,17 +5,16 @@
 ProjectileManager::ProjectileManager()
 {
 	sfx.loadFromFile("Assets/laser.mp3");
-
+	sound_projectile.setBuffer(sfx);
 }
-void ProjectileManager::Spawn(sf::Vector2f spawn_position, sf::Vector2f dir, float angle, int volume)
+void ProjectileManager::Spawn(sf::Vector2f spawn_position, sf::Vector2f dir, float angle, int volume, int projectile_type)
 {
 
-	projectiles_.emplace_back();
+	projectiles_.emplace_back(projectile_type);
 	projectiles_.back().SetPosition(spawn_position);
 	projectiles_.back().SetDirection(dir);
 	projectiles_.back().SetRotation(angle);
 
-	sound_projectile.setBuffer(sfx);
 	sound_projectile.setVolume(volume);
 	sound_projectile.play();
 
@@ -24,7 +23,7 @@ void ProjectileManager::Spawn(sf::Vector2f spawn_position, sf::Vector2f dir, flo
 void ProjectileManager::Refresh(float dt_, const sf::Vector2u& window_size)
 {
 	//Clean unused projectiles
-	auto removed_elt = std::remove_if(projectiles_.begin(), projectiles_.end(), [](const Entity& p) { return p.IsDead(); });
+	auto removed_elt = std::remove_if(projectiles_.begin(), projectiles_.end(), [](const Entity& e) { return e.IsDead(); });
 	if (removed_elt != projectiles_.end())
 	{
 		projectiles_.erase(removed_elt, projectiles_.end());
@@ -47,9 +46,9 @@ void ProjectileManager::CheckCollisions(std::vector<Asteroid>& asteroids_, playe
 			{
 				p.SetDeath();
 				a.SetDeath();
-				if (p.IsDead())
+				if (a.IsDead())
 				{
-					player.SetScore(10);
+					player.SetScore(5);
 				}
 			}
 		}

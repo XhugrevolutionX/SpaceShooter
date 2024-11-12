@@ -1,7 +1,7 @@
 #include "Enemy.h"
 
 int Enemy::counter_ = 0;
-sf::Texture Enemy::texture_;
+std::vector<sf::Texture> Enemy::textures_;
 
 constexpr float kShootPeriod = 0.3f;
 constexpr float kBurstPeriod = 0.6f;
@@ -10,13 +10,27 @@ void Enemy::SetDeath()
 	is_dead_ = true;
 }
 
+void Enemy::SetRealDeath()
+{
+	is_really_dead_ = true;
+}
+
 Enemy::Enemy(sf::Vector2f dir)
 {
-	texture_.loadFromFile("Assets/enemies.png");
-	sprite_.setTexture(texture_);
-	sprite_.setOrigin(texture_.getSize().x / 2, texture_.getSize().y / 2);
+	sf::Vector2i pos = { 0,0 };
+	sf::Vector2i size = { 64,64 };
+	int nb_sprites = 3;
 
-	hitbox.setRadius(texture_.getSize().y / 2);
+	textures_.resize(nb_sprites);
+
+	for (int i = 0; i < nb_sprites; i++)
+	{
+		textures_.at(i).loadFromFile("Assets/enemies.png", sf::IntRect(pos.x + i * size.x, pos.y, size.x, size.y));
+	}
+	sprite_.setTexture(textures_.at(0));
+	sprite_.setOrigin(size.x / 2, size.y / 2);
+
+	hitbox.setRadius(textures_.at(0).getSize().y / 4);
 	hitbox.setOrigin(hitbox.getRadius(), hitbox.getRadius());
 	hitbox.setFillColor(sf::Color::Red);
 
@@ -24,9 +38,9 @@ Enemy::Enemy(sf::Vector2f dir)
 	counter_++;
 }
 
-void Enemy::Damage(int degat)
+void Enemy::Damage(int damage)
 {
-	hp -= degat;
+	hp -= damage;
 	if (hp <= 0)
 	{
 		SetDeath();
