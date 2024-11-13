@@ -21,13 +21,16 @@ protected:
 	sf::Vector2f projectile_dir;
 
 	float dir_timer = 0.f;
-	static std::vector<sf::Texture> textures_;
 	float dir_timer_limit = 0.f;
 
+	int state_ = 0;
+
 public:
-
-
 	Enemy() = default;
+
+	void SetState(int s) { state_ = s; }
+
+	int GetState() const { return state_; }
 	sf::Vector2f GetProjectileDir() const { return projectile_dir; }
 	void SetProjectileDir(sf::Vector2f dir_) { projectile_dir = dir_; }
 	int GetType() const { return type; }

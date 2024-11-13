@@ -15,8 +15,10 @@ void DeathManager::Refresh(float dt_, const sf::Vector2u& window_size, std::vect
 		if (!player_.IsReallyDead())
 		{
 			death_animations_.emplace_back();
+			death_animations_.back().Init(ship_death_path, ship_death_nb_textures, player_.GetRotation());
 			death_animations_.back().SetPosition(player_.GetPosition());
 
+			sound_.setBuffer(sfx_ship_explosion_);
 			sound_.play();
 
 			player_.SetRealDeath();

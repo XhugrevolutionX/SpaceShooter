@@ -4,22 +4,22 @@
 Game::Game()
 {
 
-	backgroud_texture.loadFromFile("Assets/Background.png");
-	backgroud_back_texture.loadFromFile("Assets/bg.png");
+	background_stars_texture.loadFromFile("Assets/Background.png");
+	background_back_texture.loadFromFile("Assets/bg.png");
 
-	background_1.setTexture(backgroud_texture);
-	background_1.setScale(5, 7);
-	background_2.setTexture(backgroud_texture);
-	background_2.setScale(5, 7);
+	background_stars_1.setTexture(background_stars_texture);
+	background_stars_1.setScale(5, 7);
+	background_stars_2.setTexture(background_stars_texture);
+	background_stars_2.setScale(5, 7);
 
-	background_back.setTexture(backgroud_back_texture);
-	background_back.setScale(1.5, 1);
+	background_back.setTexture(background_back_texture);
+	background_back.setScale(1.3, 1);
 
-	window.create(sf::VideoMode(background_1.getGlobalBounds().width, background_1.getGlobalBounds().height), "Space Shooter !!!");
+	window.create(sf::VideoMode(background_stars_1.getGlobalBounds().width, background_stars_1.getGlobalBounds().height), "Space Shooter !!!");
 
 	player_.SetPosition({ static_cast<float>(window.getSize().x) / 2,static_cast<float>(window.getSize().y / 6) * 5 });
 
-	background_2.setPosition(0, -static_cast<int>(window.getSize().y));
+	background_stars_2.setPosition(0, -static_cast<int>(window.getSize().y));
 
 
 	if (!font.loadFromFile("Assets\\BrownieStencil.ttf"))
@@ -67,19 +67,19 @@ void Game::Loop()
 		if (!player_.is_death_ended())
 		{
 			//Background scrolling
-			if (background_1.getPosition().y >= window.getSize().y)
+			if (background_stars_1.getPosition().y >= window.getSize().y)
 			{
-				background_1.setPosition(0, -static_cast<int>(window.getSize().y));
-				background_2.setPosition(0, 0);
+				background_stars_1.setPosition(0, -static_cast<int>(window.getSize().y));
+				background_stars_2.setPosition(0, 0);
 			}
-			else if (background_2.getPosition().y >= window.getSize().y)
+			else if (background_stars_2.getPosition().y >= window.getSize().y)
 			{
-				background_2.setPosition(0, -static_cast<int>(window.getSize().y));
-				background_1.setPosition(0, 0);
+				background_stars_2.setPosition(0, -static_cast<int>(window.getSize().y));
+				background_stars_1.setPosition(0, 0);
 			}
 
-			background_1.setPosition(background_1.getPosition().x, background_1.getPosition().y + 200 * dt);
-			background_2.setPosition(background_2.getPosition().x, background_2.getPosition().y + 200 * dt);
+			background_stars_1.setPosition(background_stars_1.getPosition().x, background_stars_1.getPosition().y + 200 * dt);
+			background_stars_2.setPosition(background_stars_2.getPosition().x, background_stars_2.getPosition().y + 200 * dt);
 
 
 			player_.set_state(0);
@@ -154,8 +154,8 @@ void Game::Refresh()
 void Game::draw()
 {
 	window.draw(background_back);
-	window.draw(background_1);
-	window.draw(background_2);
+	window.draw(background_stars_1);
+	window.draw(background_stars_2);
 	window.draw(asteroids_);
 	window.draw(enemies_);
 	window.draw(death_animations_);

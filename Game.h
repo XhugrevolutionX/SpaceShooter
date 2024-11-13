@@ -18,11 +18,12 @@ private:
 	EnemyManager enemies_;
 	DeathManager death_animations_;
 	player player_;
-	sf::Texture backgroud_texture;
-	sf::Texture backgroud_back_texture;
+	sf::Texture background_stars_texture;
+	sf::Texture background_planets_texture;
+	sf::Texture background_back_texture;
 	sf::Sprite background_back;
-	sf::Sprite background_1;
-	sf::Sprite background_2;
+	sf::Sprite background_stars_1;
+	sf::Sprite background_stars_2;
 
 	sf::Font font;
 	sf::Text player_hp_display_;

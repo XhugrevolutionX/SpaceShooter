@@ -39,18 +39,6 @@ void EnemyManager::Refresh(float dt_, const sf::Vector2u& window_size, Projectil
 
 			green_ships_.emplace_back(green_ship_dir);
 
-			//if (green_dir_x > 0)
-			//{
-			//	green_ships_.back().SetState(1);
-			//}
-			//else if (green_dir_x < 0)
-			//{
-			//	green_ships_.back().SetState(2);
-			//}
-			//else
-			//{
-			//	green_ships_.back().SetState(0);
-			//}
 
 			enemies_.emplace_back(green_ships_.back());
 			break;
@@ -59,38 +47,12 @@ void EnemyManager::Refresh(float dt_, const sf::Vector2u& window_size, Projectil
 
 			yellow_ships_.emplace_back(yellow_ship_dir);
 
-			//if (yellow_dir_x > 0)
-			//{
-			//	yellow_ships_.back().SetState(1);
-			//}
-			//else if (yellow_dir_x < 0)
-			//{
-			//	yellow_ships_.back().SetState(2);
-			//}
-			//else
-			//{
-			//	yellow_ships_.back().SetState(0);
-			//}
-
 			enemies_.emplace_back(yellow_ships_.back());
 			break;
 
 		case 2:
 
 			purple_ships_.emplace_back(purple_ship_dir);
-
-			//if (purple_dir_x > 0)
-			//{
-			//	purple_ships_.back().SetState(1);
-			//}
-			//else if (purple_dir_x < 0)
-			//{
-			//	purple_ships_.back().SetState(2);
-			//}
-			//else
-			//{
-			//	purple_ships_.back().SetState(0);
-			//}
 
 			enemies_.emplace_back(purple_ships_.back());
 			break;
@@ -99,22 +61,9 @@ void EnemyManager::Refresh(float dt_, const sf::Vector2u& window_size, Projectil
 
 			white_ships_.emplace_back(white_ship_dir);
 
-			//if (white_dir_x > 0)
-			//{
-			//	white_ships_.back().SetState(1);
-			//}
-			//else if (white_dir_x < 0)
-			//{
-			//	white_ships_.back().SetState(2);
-			//}
-			//else
-			//{
-			//	white_ships_.back().SetState(0);
-			//}
-
 			enemies_.emplace_back(white_ships_.back());
 			break;
-		}
+		} 
 
 		std::uniform_real_distribution<float> uniform_dist_pos(0, window_size.x);
 		enemies_.back().SetPosition(uniform_dist_pos(engine), 0);
@@ -159,6 +108,19 @@ void EnemyManager::Refresh(float dt_, const sf::Vector2u& window_size, Projectil
 				e.SetDir(e.GetDir());
 				break;
 			}
+
+			//if (e.GetDir().x > 0)
+			//{
+			//	e.SetState(1);
+			//}
+			//else if (e.GetDir().x < 0)
+			//{
+			//	e.SetState(2);
+			//}
+			//else
+			//{
+			//	e.SetState(0);
+			//}
 
 			if (e.IsShootReady())
 			{
