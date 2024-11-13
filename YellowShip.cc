@@ -26,6 +26,7 @@ YellowShip::YellowShip(sf::Vector2f dir)
 
 	hp = 5;
 	type = 1;
+	dir_timer_limit = 0.f;
 	projectile_dir = {0, 750};
 	ShootSeparation = 0.5f;
 	BurstPeriod = 0.9f;

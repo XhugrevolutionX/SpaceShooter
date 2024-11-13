@@ -25,6 +25,7 @@ GreenShip::GreenShip(sf::Vector2f dir)
 
 	hp = 5;
 	type = 0;
+	dir_timer_limit = 1.f;
 	projectile_dir = { 300, 750 };
 	ShootSeparation = 0.75f;
 	BurstPeriod = 0.f;

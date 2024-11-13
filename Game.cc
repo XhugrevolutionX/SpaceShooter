@@ -5,11 +5,15 @@ Game::Game()
 {
 
 	backgroud_texture.loadFromFile("Assets/Background.png");
+	backgroud_back_texture.loadFromFile("Assets/bg.png");
 
 	background_1.setTexture(backgroud_texture);
 	background_1.setScale(5, 7);
 	background_2.setTexture(backgroud_texture);
 	background_2.setScale(5, 7);
+
+	background_back.setTexture(backgroud_back_texture);
+	background_back.setScale(1.5, 1);
 
 	window.create(sf::VideoMode(background_1.getGlobalBounds().width, background_1.getGlobalBounds().height), "Space Shooter !!!");
 
@@ -108,7 +112,7 @@ void Game::Loop()
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && laser_cooldown > 0.25)
 			{
 
-				player_projectiles_.Spawn(player_.GetPosition(), { 0, -750 }, 0, 50, 1);
+				player_projectiles_.Spawn(player_.GetPosition(), { 0, -750 }, 20, 1);
 				laser_cooldown = 0;
 			}
 
@@ -142,13 +146,14 @@ void Game::Refresh()
 	player_.Refresh(dt, asteroids_.GetEntities(), enemies_.GetEntities(), enemy_projectiles_.GetEntities(), player_hp_display_);
 	player_projectiles_.Refresh(dt, window.getSize());
 	enemy_projectiles_.Refresh(dt, window.getSize());
+	death_animations_.Refresh(dt, window.getSize(), enemies_.GetEntities(), asteroids_.GetEntities(), player_);
 	asteroids_.Refresh(dt, window.getSize());
-	death_animations_.Refresh(dt, window.getSize(), enemies_.GetEntities(), player_);
 	enemies_.Refresh(dt, window.getSize(), enemy_projectiles_);
 }
 
 void Game::draw()
 {
+	window.draw(background_back);
 	window.draw(background_1);
 	window.draw(background_2);
 	window.draw(asteroids_);

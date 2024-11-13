@@ -25,6 +25,7 @@ WhiteShip::WhiteShip(sf::Vector2f dir)
 
 	hp = 5;
 	type = 3;
+	dir_timer_limit = 0.f;
 	projectile_dir = { -500, 750 };
 	ShootSeparation = 0.4f;
 	BurstPeriod = 0.f;

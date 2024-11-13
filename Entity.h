@@ -34,9 +34,13 @@ public:
 
 	void SetPosition(sf::Vector2f pos);
 
-	sf::Vector2f GetPosition() const { return getPosition(); } 
+	sf::Vector2f GetPosition() const { return getPosition(); }
 
+	void SetDir(sf::Vector2f dir) { direction_ = dir; }
 
+	sf::Vector2f GetDir() const { return direction_; }
+
+	float GetRotation() const { return getRotation(); }
 protected:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 

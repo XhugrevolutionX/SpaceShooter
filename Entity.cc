@@ -23,7 +23,7 @@ bool Entity::Intersects(sf::FloatRect hitBox_)
 	return HitBox().intersects(hitBox_);
 }
 
-sf::FloatRect  Entity::HitBox()
+sf::FloatRect Entity::HitBox()
 {
 	sf::FloatRect hit_box = hitbox.getGlobalBounds();
 	hit_box.left += getPosition().x;

@@ -20,8 +20,9 @@ protected:
 
 	sf::Vector2f projectile_dir;
 
-	void SetDeath();
-	void SetRealDeath();
+	float dir_timer = 0.f;
+	static std::vector<sf::Texture> textures_;
+	float dir_timer_limit = 0.f;
 
 public:
 
@@ -33,6 +34,11 @@ public:
 	void Damage(int damage);
 	void Refresh(float dt);
 	bool IsShootReady();
+
+	void ResetTimer() { dir_timer = 0; }
+	float GetTimer() const { return dir_timer; }
+
+	float GetTimerLimit() const { return dir_timer_limit; }
 };
 
 

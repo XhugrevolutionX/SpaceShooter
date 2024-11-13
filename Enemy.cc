@@ -1,16 +1,6 @@
 
 #include "Enemy.h"
 
-void Enemy::SetDeath()
-{
-	is_dead_ = true;
-}
-
-void Enemy::SetRealDeath()
-{
-	is_really_dead_ = true;
-}
-
 void Enemy::Damage(int damage)
 {
 	hp -= damage;
@@ -23,6 +13,7 @@ void Enemy::Damage(int damage)
 void Enemy::Refresh(float dt)
 {
 	shoot_dt_ += dt;
+	dir_timer += dt;
 	if (shoot_dt_ >= ShootSeparation)
 	{
 		burst_dt_ += dt;

@@ -14,7 +14,7 @@ EnemyManager::EnemyManager()
 	std::uniform_real_distribution<float> yellow_ship_rng_dir_x(-50, 50);
 	float yellow_dir_x = yellow_ship_rng_dir_x(engine);
 
-	green_ship_dir = { 0, 200 };
+	green_ship_dir = { 200, 200 };
 	yellow_ship_dir = { yellow_dir_x, 200 };
 	purple_ship_dir = { 0, 200 };
 	white_ship_dir = { 0, 200 };
@@ -137,6 +137,29 @@ void EnemyManager::Refresh(float dt_, const sf::Vector2u& window_size, Projectil
 			e.Refresh(dt_);
 			e.Move(dt_, window_size);
 
+			switch (e.GetType())
+			{
+			case 0:
+				if (e.GetTimer() > e.GetTimerLimit())
+				{
+					e.SetDir({ -e.GetDir().x, e.GetDir().y });
+					e.ResetTimer();
+				}
+				break;
+			case 1:
+				e.SetDir(e.GetDir());
+				break;
+			case 2:
+				e.SetDir(e.GetDir());
+				break;
+			case 3:
+				e.SetDir(e.GetDir());
+				break;
+			default:
+				e.SetDir(e.GetDir());
+				break;
+			}
+
 			if (e.IsShootReady())
 			{
 				std::random_device rn_device;
@@ -147,26 +170,26 @@ void EnemyManager::Refresh(float dt_, const sf::Vector2u& window_size, Projectil
 				{
 				case 0:
 
-					enemy_projectiles_.Spawn(e.GetPosition(), { e.GetProjectileDir().x, e.GetProjectileDir().y }, 180 - (atan(e.GetProjectileDir().x / e.GetProjectileDir().y) * 180 / 3.1415), 10, 2);
-					enemy_projectiles_.Spawn(e.GetPosition(), { -e.GetProjectileDir().x, e.GetProjectileDir().y }, 180 - (atan(-e.GetProjectileDir().x / e.GetProjectileDir().y) * 180 / 3.1415), 10, 2);
+					enemy_projectiles_.Spawn(e.GetPosition(), { e.GetProjectileDir().x, e.GetProjectileDir().y }, 10, 2);
+					enemy_projectiles_.Spawn(e.GetPosition(), { -e.GetProjectileDir().x, e.GetProjectileDir().y }, 10, 2);
 
 					break;
 
 				case 1:
 					e.SetProjectileDir({ enemy_projectiles_angle(engine),e.GetProjectileDir().y });
-					enemy_projectiles_.Spawn(e.GetPosition(), { e.GetProjectileDir().x, e.GetProjectileDir().y }, 180 - (atan(e.GetProjectileDir().x / e.GetProjectileDir().y) * 180 / 3.1415), 10, 3);
+					enemy_projectiles_.Spawn(e.GetPosition(), { e.GetProjectileDir().x, e.GetProjectileDir().y }, 10, 3);
 					break;
 
 				case 2:
 
-					enemy_projectiles_.Spawn(e.GetPosition(), { e.GetProjectileDir().x, e.GetProjectileDir().y }, 180 - (atan(e.GetProjectileDir().x / e.GetProjectileDir().y) * 180 / 3.1415), 10, 4);
-					enemy_projectiles_.Spawn(e.GetPosition(), { 0, e.GetProjectileDir().y }, 180 - (atan(0 / e.GetProjectileDir().y) * 180 / 3.1415), 10, 4);
-					enemy_projectiles_.Spawn(e.GetPosition(), { -e.GetProjectileDir().x, e.GetProjectileDir().y }, 180 - (atan(-e.GetProjectileDir().x / e.GetProjectileDir().y) * 180 / 3.1415), 10, 4);
+					enemy_projectiles_.Spawn(e.GetPosition(), { e.GetProjectileDir().x, e.GetProjectileDir().y }, 10, 4);
+					enemy_projectiles_.Spawn(e.GetPosition(), { 0, e.GetProjectileDir().y }, 10, 4);
+					enemy_projectiles_.Spawn(e.GetPosition(), { -e.GetProjectileDir().x, e.GetProjectileDir().y }, 10, 4);
 					break;
 
 				case 3:
 
-					enemy_projectiles_.Spawn(e.GetPosition(), { e.GetProjectileDir().x, e.GetProjectileDir().y }, 180 - (atan(e.GetProjectileDir().x / e.GetProjectileDir().y) * 180 / 3.1415), 10, 5);
+					enemy_projectiles_.Spawn(e.GetPosition(), { e.GetProjectileDir().x, e.GetProjectileDir().y }, 10, 5);
 					if (e.GetProjectileDir().x >= 500)
 					{
 						e.SetProjectileDir({ -500, e.GetProjectileDir().y });

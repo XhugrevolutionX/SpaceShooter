@@ -3,12 +3,12 @@
 
 DeathManager::DeathManager()
 {
-	sfx.loadFromFile("Assets/explosion.mp3");
-	sound_explosion.setBuffer(sfx);
-	sound_explosion.setVolume(50);
+	sfx_ship_explosion_.loadFromFile("Assets/explosion.mp3");
+	sfx_asteroid_explosion_.loadFromFile("Assets/boom.mp3");;
+	sound_.setVolume(75);
 }
 
-void DeathManager::Refresh(float dt_, const sf::Vector2u& window_size, std::vector<Enemy>& enemies_, player& player_)
+void DeathManager::Refresh(float dt_, const sf::Vector2u& window_size, std::vector<Enemy>& enemies_, std::vector<Asteroid>& asteroids_, player& player_)
 {
 	if (player_.IsDead())
 	{
@@ -17,7 +17,7 @@ void DeathManager::Refresh(float dt_, const sf::Vector2u& window_size, std::vect
 			death_animations_.emplace_back();
 			death_animations_.back().SetPosition(player_.GetPosition());
 
-			sound_explosion.play();
+			sound_.play();
 
 			player_.SetRealDeath();
 		}
@@ -28,16 +28,41 @@ void DeathManager::Refresh(float dt_, const sf::Vector2u& window_size, std::vect
 
 	}
 
-	for (Entity& e : enemies_)
+	for (Enemy& e : enemies_)
 	{
 		if (e.IsDead() && !e.IsOffScreen() && !e.IsReallyDead())
 		{
 			death_animations_.emplace_back();
+			death_animations_.back().Init(ship_death_path, ship_death_nb_textures, e.GetRotation());
 			death_animations_.back().SetPosition(e.GetPosition());
 
-			sound_explosion.play();
+			sound_.setBuffer(sfx_ship_explosion_);
+			sound_.play();
 
 			e.SetRealDeath();
+		}
+	}
+
+
+	for (Asteroid& a : asteroids_)
+	{
+		if (a.IsDead() && !a.IsOffScreen() && !a.IsReallyDead())
+		{
+			death_animations_.emplace_back();
+			if (a.GetType() == 0)
+			{
+				death_animations_.back().Init(asteroid_death_path, asteroid_death_nb_textures, a.GetRotation());
+			}
+			else if(a.GetType() == 1)
+			{
+				death_animations_.back().Init(tiny_asteroid_death_path, tiny_asteroid_death_nb_textures, a.GetRotation());
+			}
+			death_animations_.back().SetPosition(a.GetPosition());
+
+			sound_.setBuffer(sfx_asteroid_explosion_);
+			sound_.play();
+
+			a.SetRealDeath();
 		}
 	}
 
@@ -46,7 +71,7 @@ void DeathManager::Refresh(float dt_, const sf::Vector2u& window_size, std::vect
 		d.SetDelay(d.GetDelay() + dt_);
 		if (d.GetDelay() > 0.1)
 		{
-			if (d.GetState() < 3)
+			if (d.GetState() < d.GetNbTextures() - 1)
 			{
 				d.SetState(d.GetState() + 1);
 			}

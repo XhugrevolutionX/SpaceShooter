@@ -19,6 +19,8 @@ private:
 	DeathManager death_animations_;
 	player player_;
 	sf::Texture backgroud_texture;
+	sf::Texture backgroud_back_texture;
+	sf::Sprite background_back;
 	sf::Sprite background_1;
 	sf::Sprite background_2;
 

@@ -25,9 +25,10 @@ PurpleShip::PurpleShip(sf::Vector2f dir)
 
 	hp = 5;
 	type = 2;
+	dir_timer_limit = 0.f;
 	projectile_dir = { 300, 750 };
 	ShootSeparation = 1.f;
-	BurstPeriod = 0.6f;
+	BurstPeriod = 0.4f;
 	BurstSeparation = 0.2f;
 
 	direction_ = dir;

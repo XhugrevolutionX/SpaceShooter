@@ -7,12 +7,21 @@ ProjectileManager::ProjectileManager()
 	sfx.loadFromFile("Assets/laser.mp3");
 	sound_projectile.setBuffer(sfx);
 }
-void ProjectileManager::Spawn(sf::Vector2f spawn_position, sf::Vector2f dir, float angle, int volume, int projectile_type)
+void ProjectileManager::Spawn(sf::Vector2f spawn_position, sf::Vector2f dir,float volume, int projectile_type)
 {
-
 	projectiles_.emplace_back(projectile_type);
 	projectiles_.back().SetDirection(dir);
-	projectiles_.back().SetRotation(angle);
+
+	if (projectile_type >= 2)
+	{
+		projectiles_.back().SetRotation(180 + (atan(-dir.x / dir.y) * 180 / 3.1415));
+
+	}
+	else
+	{
+		projectiles_.back().SetRotation((atan(-dir.x / dir.y) * 180 / 3.1415));
+
+	}
 
 	if (dir.y > 0)
 	{
@@ -23,10 +32,11 @@ void ProjectileManager::Spawn(sf::Vector2f spawn_position, sf::Vector2f dir, flo
 		projectiles_.back().SetPosition({ spawn_position.x, spawn_position.y - (projectiles_.back().HitBox().getSize().y / 2) });
 	}
 
-
-	sound_projectile.setVolume(volume);
-	sound_projectile.play();
-
+	if (sound_timer >= sound_timer_limit)
+	{
+		sound_projectile.setVolume(volume);
+		sound_projectile.play();
+	}
 }
 
 void ProjectileManager::Refresh(float dt_, const sf::Vector2u& window_size)
@@ -42,7 +52,9 @@ void ProjectileManager::Refresh(float dt_, const sf::Vector2u& window_size)
 	for (Entity& e : projectiles_)
 	{
 		e.Move(dt_, window_size);
+
 	}
+	sound_timer += dt_;
 }
 
 void ProjectileManager::CheckCollisions(std::vector<Asteroid>& asteroids_, player& player, sf::Text& player_score_display)
@@ -66,7 +78,6 @@ void ProjectileManager::CheckCollisions(std::vector<Asteroid>& asteroids_, playe
 	std::string str_score = std::to_string(player.GetScore());
 	str_score.append(" Points");
 	player_score_display.setString(str_score);
-
 }
 
 void ProjectileManager::CheckCollisions(std::vector<Enemy>& enemies, player& player, sf::Text& player_score_display)
@@ -104,8 +115,6 @@ void ProjectileManager::CheckCollisions(std::vector<Enemy>& enemies, player& pla
 			}
 		}
 	}
-	
-
 	std::string str_score = std::to_string(player.GetScore());
 	str_score.append(" Points");
 	player_score_display.setString(str_score);

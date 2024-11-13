@@ -17,7 +17,7 @@ Asteroid::Asteroid()
 
 	textures_.resize(2);
 	textures_.at(0).loadFromFile("Assets/Asteroid.png");
-	textures_.at(1).loadFromFile("Assets/SmallAsteroid.png");
+	textures_.at(1).loadFromFile("Assets/Small_Asteroid.png");
 
 	sprite_.setTexture(textures_.at(rng_sprite));
 	sprite_.setOrigin(textures_.at(rng_sprite).getSize().x / 2, textures_.at(rng_sprite).getSize().y / 2);
@@ -26,6 +26,7 @@ Asteroid::Asteroid()
 	hitbox.setOrigin(hitbox.getRadius(), hitbox.getRadius());
 	hitbox.setFillColor(sf::Color::Red);
 
+	type = rng_sprite;
 	direction_ = { uniform_dist_x(engine) , uniform_dist_y(engine) };
 	counter_++;
 
