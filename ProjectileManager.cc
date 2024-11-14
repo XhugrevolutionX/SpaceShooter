@@ -1,6 +1,7 @@
 #include "ProjectileManager.h"
 
 #include <complex>
+#include <random>
 
 ProjectileManager::ProjectileManager()
 {
@@ -9,6 +10,11 @@ ProjectileManager::ProjectileManager()
 }
 void ProjectileManager::Spawn(sf::Vector2f spawn_position, sf::Vector2f dir,float volume, int projectile_type)
 {
+
+	std::random_device rn_device;
+	std::default_random_engine engine(rn_device());
+	std::uniform_real_distribution<float> rng_pitch(0.6f, 1.f);
+
 	projectiles_.emplace_back(projectile_type);
 	projectiles_.back().SetDirection(dir);
 
@@ -35,6 +41,7 @@ void ProjectileManager::Spawn(sf::Vector2f spawn_position, sf::Vector2f dir,floa
 	if (sound_timer >= sound_timer_limit)
 	{
 		sound_projectile.setVolume(volume);
+		sound_projectile.setPitch(rng_pitch(engine));
 		sound_projectile.play();
 	}
 }

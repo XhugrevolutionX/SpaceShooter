@@ -15,8 +15,6 @@ protected:
 
 	sf::CircleShape hitbox;
 
-	std::vector<sf::Texture> death_anim;
-
 
 public:
 	void Move(float dt, const sf::Vector2u& window_size);

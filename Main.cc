@@ -2,6 +2,5 @@
 int main()
 {
 	Game mygame;
-
 	mygame.Loop();
 }

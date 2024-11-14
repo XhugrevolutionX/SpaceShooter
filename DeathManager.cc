@@ -4,7 +4,8 @@
 DeathManager::DeathManager()
 {
 	sfx_ship_explosion_.loadFromFile("Assets/explosion.mp3");
-	sfx_asteroid_explosion_.loadFromFile("Assets/boom.mp3");;
+	sfx_asteroid_explosion_.loadFromFile("Assets/boom.mp3");
+	sfx_player_death_.loadFromFile("Assets/player_dead.mp3");
 	sound_.setVolume(75);
 }
 
@@ -25,9 +26,10 @@ void DeathManager::Refresh(float dt_, const sf::Vector2u& window_size, std::vect
 		}
 		if (death_animations_.empty())
 		{
+			sound_.setBuffer(sfx_player_death_);
+			sound_.play();
 			player_.set_EndDeath();
 		}
-
 	}
 
 	for (Enemy& e : enemies_)

@@ -3,7 +3,6 @@
 
 Game::Game()
 {
-
 	background_stars_texture.loadFromFile("Assets/Background.png");
 	background_back_texture.loadFromFile("Assets/bg.png");
 
@@ -20,7 +19,6 @@ Game::Game()
 	player_.SetPosition({ static_cast<float>(window.getSize().x) / 2,static_cast<float>(window.getSize().y / 6) * 5 });
 
 	background_stars_2.setPosition(0, -static_cast<int>(window.getSize().y));
-
 
 	if (!font.loadFromFile("Assets\\BrownieStencil.ttf"))
 	{

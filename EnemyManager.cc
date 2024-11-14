@@ -109,18 +109,18 @@ void EnemyManager::Refresh(float dt_, const sf::Vector2u& window_size, Projectil
 				break;
 			}
 
-			//if (e.GetDir().x > 0)
-			//{
-			//	e.SetState(1);
-			//}
-			//else if (e.GetDir().x < 0)
-			//{
-			//	e.SetState(2);
-			//}
-			//else
-			//{
-			//	e.SetState(0);
-			//}
+			if (e.GetDir().x > 0)
+			{
+				e.SetState(1);
+			}
+			else if (e.GetDir().x < 0)
+			{
+				e.SetState(2);
+			}
+			else
+			{
+				e.SetState(0);
+			}
 
 			if (e.IsShootReady())
 			{

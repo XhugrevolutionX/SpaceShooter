@@ -22,6 +22,7 @@ private:
 	sf::Sound sound_;
 	sf::SoundBuffer sfx_ship_explosion_;
 	sf::SoundBuffer sfx_asteroid_explosion_;
+	sf::SoundBuffer sfx_player_death_;
 public:
 
 	DeathManager();
