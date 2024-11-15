@@ -20,7 +20,7 @@ Game::Game()
 
 	background_stars_2.setPosition(0, -static_cast<int>(window.getSize().y));
 
-	if (!font.loadFromFile("Assets\\BrownieStencil.ttf"))
+	if (!font.loadFromFile("Assets/BrownieStencil.ttf"))
 	{
 
 	}
@@ -34,6 +34,10 @@ Game::Game()
 	player_score_display_.setPosition(window.getSize().x / 20 * 18, window.getSize().y / 25 * 2);
 	player_score_display_.setCharacterSize(25);
 	player_score_display_.setFillColor(sf::Color::Red);
+
+	music_.openFromFile("Assets/anipatok_game_music_shmup.mp3");
+	music_.setLoop(true);
+	music_.setVolume(50);
 }
 
 void Game::Loop()
@@ -48,6 +52,7 @@ void Game::Loop()
 	str_score.append(" Points");
 	player_score_display_.setString(str_score);
 
+	music_.play();
 	//Game loop
 	
 	while (window.isOpen())
@@ -59,6 +64,7 @@ void Game::Loop()
 			//Closing the window
 			if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 			{
+				music_.stop();
 				window.close();
 			}
 		}

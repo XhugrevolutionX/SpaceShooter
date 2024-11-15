@@ -19,11 +19,12 @@ private:
 	DeathManager death_animations_;
 	player player_;
 	sf::Texture background_stars_texture;
-	sf::Texture background_planets_texture;
 	sf::Texture background_back_texture;
 	sf::Sprite background_back;
 	sf::Sprite background_stars_1;
 	sf::Sprite background_stars_2;
+
+	sf::Music music_;
 
 	sf::Font font;
 	sf::Text player_hp_display_;
