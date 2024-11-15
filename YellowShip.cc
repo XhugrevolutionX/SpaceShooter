@@ -24,7 +24,7 @@ YellowShip::YellowShip(sf::Vector2f dir)
 	hitbox.setOrigin(hitbox.getRadius(), hitbox.getRadius());
 	hitbox.setFillColor(sf::Color::Red);
 
-	hp = 5;
+	hp = 4;
 	type = 1;
 	dir_timer_limit = 0.f;
 	projectile_dir = {0, 750};

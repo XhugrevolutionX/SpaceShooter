@@ -23,7 +23,7 @@ PurpleShip::PurpleShip(sf::Vector2f dir)
 	hitbox.setFillColor(sf::Color::Red);
 
 
-	hp = 5;
+	hp = 2;
 	type = 2;
 	dir_timer_limit = 0.f;
 	projectile_dir = { 300, 750 };

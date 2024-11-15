@@ -6,7 +6,7 @@ class PowerUp : public Entity
 {
 private:
 	int type;
-	sf::Texture texture_;
+	static std::vector<sf::Texture> textures_;
 public:
 
 	int GetType() { return type; }
