@@ -32,14 +32,14 @@ Asteroid::Asteroid()
 
 }
 
-void Asteroid::Rotate()
+void Asteroid::Rotate(float dt_)
 {
 	// Seed with a real random value, if available
 	std::random_device rn_device;
 	// Choose a random mean between min and max
 	std::default_random_engine engine(rn_device());
-	std::uniform_real_distribution<float> uniform_dist_x(0.005, 0.05);
+	std::uniform_real_distribution<float> uniform_dist_x(50, 75);
 
-	setRotation(getRotation() + uniform_dist_x(engine));
+	setRotation(getRotation() + (uniform_dist_x(engine) * dt_));
 }
 

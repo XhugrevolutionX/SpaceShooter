@@ -30,7 +30,7 @@ void AsteroidManager::Refresh(float dt_, const sf::Vector2u& window_size)
 	//Move remaining asteroids
 	for (Asteroid& a : asteroids_)
 	{
-		a.Rotate();
+		a.Rotate(dt_);
 		a.Move(dt_, window_size);
 	}
 }

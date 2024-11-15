@@ -3,7 +3,7 @@
 
 #include "SFML/Audio.hpp"
 #include "DeathAnim.h"
-#include "Enemy.h"
+#include "Enemies.h"
 #include "Asteroid.h"
 #include "Player.h"
 
@@ -26,7 +26,7 @@ private:
 public:
 
 	DeathManager();
-	void Refresh(float dt_, const sf::Vector2u& window_size, std::vector<Enemy>& enemies_, std::vector<Asteroid>& asteroids_, player& player_);
+	void Refresh(float dt_, const sf::Vector2u& window_size, std::vector<Enemies>& enemies_, std::vector<Asteroid>& asteroids_, player& player_);
 
 protected:
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

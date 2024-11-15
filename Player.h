@@ -1,7 +1,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include "Asteroid.h"
-#include "Enemy.h"
+#include "Enemies.h"
 #include "PowerUp.h"
 #include "Projectile.h"
 
@@ -37,10 +37,10 @@ public:
 	int GetScore() const { return score_; }
 	void Damage(sf::Text& player_hp_);
 	void CheckCollisions(std::vector<Asteroid>& asteroids_, sf::Text& player_hp_);
-	void CheckCollisions(std::vector<Enemy>& enemies, sf::Text& player_hp_);
+	void CheckCollisions(std::vector<Enemies>& enemies, sf::Text& player_hp_);
 	void CheckCollisions(std::vector<Projectile>& projectiles, sf::Text& player_hp_);
 	void CheckCollisions(std::vector<PowerUp>& power_ups_, sf::Text& player_hp_);
-	void Refresh(float dt, std::vector<Asteroid>& asteroids_, std::vector<Enemy>& enemies, std::vector<Projectile>& projectiles, std::vector<PowerUp>& power_ups_,sf::Text& player_hp_);
+	void Refresh(float dt, std::vector<Asteroid>& asteroids_, std::vector<Enemies>& enemies, std::vector<Projectile>& projectiles, std::vector<PowerUp>& power_ups_,sf::Text& player_hp_);
 	void movePlayer(sf::Vector2f direction, float dt, const sf::Vector2u& window_size);
 
 	void Heal(int h, sf::Text& player_hp_display);

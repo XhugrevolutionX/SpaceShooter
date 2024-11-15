@@ -39,9 +39,6 @@
     <ClCompile Include="AsteroidManager.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GreenShip.cc">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="EnemyManager.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -51,16 +48,7 @@
     <ClCompile Include="DeathAnim.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy.cc">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="YellowShip.cc">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PurpleShip.cc">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="WhiteShip.cc">
+    <ClCompile Include="Enemies.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PowerUp.cc">
@@ -92,9 +80,6 @@
     <ClInclude Include="AsteroidManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GreenShip.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="EnemyManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -104,16 +89,7 @@
     <ClInclude Include="DeathAnim.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="YellowShip.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PurpleShip.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WhiteShip.h">
+    <ClInclude Include="Enemies.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PowerUp.h">

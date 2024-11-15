@@ -87,7 +87,7 @@ void ProjectileManager::CheckCollisions(std::vector<Asteroid>& asteroids_, playe
 	player_score_display.setString(str_score);
 }
 
-void ProjectileManager::CheckCollisions(std::vector<Enemy>& enemies, player& player, sf::Text& player_score_display)
+void ProjectileManager::CheckCollisions(std::vector<Enemies>& enemies, player& player, sf::Text& player_score_display)
 {
 	for (auto& e : enemies)
 	{

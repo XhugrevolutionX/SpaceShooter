@@ -16,7 +16,7 @@ public:
 
 	int GetType() { return type; }
 	void DeathAnim(float dt_);
-	void Rotate();
+	void Rotate(float dt_);
 
 };
 

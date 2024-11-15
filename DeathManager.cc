@@ -9,7 +9,7 @@ DeathManager::DeathManager()
 	sound_.setVolume(75);
 }
 
-void DeathManager::Refresh(float dt_, const sf::Vector2u& window_size, std::vector<Enemy>& enemies_, std::vector<Asteroid>& asteroids_, player& player_)
+void DeathManager::Refresh(float dt_, const sf::Vector2u& window_size, std::vector<Enemies>& enemies_, std::vector<Asteroid>& asteroids_, player& player_)
 {
 	if (player_.IsDead())
 	{
@@ -32,7 +32,7 @@ void DeathManager::Refresh(float dt_, const sf::Vector2u& window_size, std::vect
 		}
 	}
 
-	for (Enemy& e : enemies_)
+	for (Enemies& e : enemies_)
 	{
 		if (e.IsDead() && !e.IsOffScreen() && !e.IsReallyDead())
 		{

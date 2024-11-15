@@ -80,7 +80,7 @@ void player::CheckCollisions(std::vector<Asteroid>& asteroids_, sf::Text& player
 
 }
 
-void player::CheckCollisions(std::vector<Enemy>& enemies, sf::Text& player_hp_)
+void player::CheckCollisions(std::vector<Enemies>& enemies, sf::Text& player_hp_)
 {
 	for (auto&e : enemies)
 	{
@@ -125,7 +125,7 @@ void player::CheckCollisions(std::vector<PowerUp>& power_ups_, sf::Text& player_
 	}
 }
 
-void player::Refresh(float dt, std::vector<Asteroid>& asteroids_, std::vector<Enemy>& enemies, std::vector<Projectile>& projectiles, std::vector<PowerUp>& power_ups_,sf::Text& player_hp_)
+void player::Refresh(float dt, std::vector<Asteroid>& asteroids_, std::vector<Enemies>& enemies, std::vector<Projectile>& projectiles, std::vector<PowerUp>& power_ups_,sf::Text& player_hp_)
 {
 	CheckCollisions(power_ups_, player_hp_);
 	if (!is_hit_)

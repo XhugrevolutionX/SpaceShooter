@@ -1,23 +1,12 @@
 #include "EnemyManager.h"
 #include "random"
 
-
-
 constexpr float kSpawnPeriod = 2.f;
-
 
 EnemyManager::EnemyManager()
 {
 
-	std::random_device rn_device;
-	std::default_random_engine engine(rn_device());
-	std::uniform_real_distribution<float> yellow_ship_rng_dir_x(-50, 50);
-	float yellow_dir_x = yellow_ship_rng_dir_x(engine);
-
-	green_ship_dir = { 200, 200 };
-	yellow_ship_dir = { yellow_dir_x, 200 };
-	purple_ship_dir = { 0, 200 };
-	white_ship_dir = { 0, 200 };
+	enemies_.reserve(20);
 
 }
 
@@ -37,31 +26,25 @@ void EnemyManager::Refresh(float dt_, const sf::Vector2u& window_size, Projectil
 		{
 		case 0:
 
-			green_ships_.emplace_back(green_ship_dir);
-
-
-			enemies_.emplace_back(green_ships_.back());
+			enemies_.emplace_back(0);
 			break;
 
 		case 1:
 
-			yellow_ships_.emplace_back(yellow_ship_dir);
-
-			enemies_.emplace_back(yellow_ships_.back());
+			enemies_.emplace_back(1);
 			break;
 
 		case 2:
 
-			purple_ships_.emplace_back(purple_ship_dir);
-
-			enemies_.emplace_back(purple_ships_.back());
+			enemies_.emplace_back(2);
 			break;
 
 		case 3:
 
-			white_ships_.emplace_back(white_ship_dir);
+			enemies_.emplace_back(3);
+			break;
 
-			enemies_.emplace_back(white_ships_.back());
+		default:
 			break;
 		} 
 
@@ -72,14 +55,14 @@ void EnemyManager::Refresh(float dt_, const sf::Vector2u& window_size, Projectil
 	}
 
 	//Clean unused enemies
-	auto removed_elt = std::remove_if(enemies_.begin(), enemies_.end(), [](const Enemy& e) { return e.IsReallyDead(); });
+	auto removed_elt = std::remove_if(enemies_.begin(), enemies_.end(), [](const Enemies& e) { return e.IsReallyDead(); });
 	if (removed_elt != enemies_.end())
 	{
 		enemies_.erase(removed_elt, enemies_.end());
 	}
 
 	//Move remaining not dead enemies
-	for (Enemy& e : enemies_)
+	for (Enemies& e : enemies_)
 	{
 		if (!e.IsDead())
 		{
@@ -89,23 +72,18 @@ void EnemyManager::Refresh(float dt_, const sf::Vector2u& window_size, Projectil
 			switch (e.GetType())
 			{
 			case 0:
-				if (e.GetTimer() > e.GetTimerLimit())
+				if (e.GetTimer() > e.GetTimerLimit() || e.GetPosition().x >= window_size.x - e.GetSize().x / 2 || e.GetPosition().x <= 0 + e.GetSize().x / 2)
 				{
 					e.SetDir({ -e.GetDir().x, e.GetDir().y });
 					e.ResetTimer();
 				}
-				break;
 			case 1:
-				e.SetDir(e.GetDir());
-				break;
-			case 2:
-				e.SetDir(e.GetDir());
-				break;
-			case 3:
-				e.SetDir(e.GetDir());
+				if (e.GetPosition().x >= window_size.x - e.GetSize().x / 2 || e.GetPosition().x <= 0 + e.GetSize().x / 2)
+				{
+					e.SetDir({-e.GetDir().x, e.GetDir().y});
+				}
 				break;
 			default:
-				e.SetDir(e.GetDir());
 				break;
 			}
 
@@ -172,7 +150,7 @@ void EnemyManager::Refresh(float dt_, const sf::Vector2u& window_size, Projectil
 
 void EnemyManager::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-	for (Enemy e : enemies_)
+	for (Enemies e : enemies_)
 	{
 		if (!e.IsDead())
 		{
