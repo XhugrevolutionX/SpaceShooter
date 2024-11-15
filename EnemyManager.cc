@@ -5,9 +5,7 @@ constexpr float kSpawnPeriod = 2.f;
 
 EnemyManager::EnemyManager()
 {
-
 	enemies_.reserve(20);
-
 }
 
 
@@ -77,6 +75,7 @@ void EnemyManager::Refresh(float dt_, const sf::Vector2u& window_size, Projectil
 					e.SetDir({ -e.GetDir().x, e.GetDir().y });
 					e.ResetTimer();
 				}
+				break;
 			case 1:
 				if (e.GetPosition().x >= window_size.x - e.GetSize().x / 2 || e.GetPosition().x <= 0 + e.GetSize().x / 2)
 				{
