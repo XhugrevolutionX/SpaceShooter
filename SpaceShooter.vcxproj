@@ -138,6 +138,8 @@
     <ClCompile Include="Game.cc" />
     <ClCompile Include="Main.cc" />
     <ClCompile Include="Player.cc" />
+    <ClCompile Include="PowerUp.cc" />
+    <ClCompile Include="PowerUpManager.cc" />
     <ClCompile Include="Projectile.cc" />
     <ClCompile Include="ProjectileManager.cc" />
     <ClCompile Include="PurpleShip.cc" />
@@ -155,6 +157,8 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PowerUp.h" />
+    <ClInclude Include="PowerUpsManager.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="ProjectileManager.h" />
     <ClInclude Include="PurpleShip.h" />

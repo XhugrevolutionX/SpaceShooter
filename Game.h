@@ -6,6 +6,7 @@
 #include "Player.h"
 #include "ProjectileManager.h"
 #include "DeathManager.h"
+#include "PowerUpsManager.h"
 
 
 class Game
@@ -17,6 +18,7 @@ private:
 	AsteroidManager asteroids_;
 	EnemyManager enemies_;
 	DeathManager death_animations_;
+	PowerUpsManager power_ups_;
 	player player_;
 	sf::Texture background_stars_texture;
 	sf::Texture background_back_texture;

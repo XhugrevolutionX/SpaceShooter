@@ -147,7 +147,8 @@ void Game::CheckCollisions()
 
 void Game::Refresh()
 {
-	player_.Refresh(dt, asteroids_.GetEntities(), enemies_.GetEntities(), enemy_projectiles_.GetEntities(), player_hp_display_);
+	power_ups_.Refresh(dt, window.getSize());
+	player_.Refresh(dt, asteroids_.GetEntities(), enemies_.GetEntities(), enemy_projectiles_.GetEntities(), power_ups_.GetEntities(),player_hp_display_);
 	player_projectiles_.Refresh(dt, window.getSize());
 	enemy_projectiles_.Refresh(dt, window.getSize());
 	death_animations_.Refresh(dt, window.getSize(), enemies_.GetEntities(), asteroids_.GetEntities(), player_);
@@ -161,6 +162,7 @@ void Game::draw()
 	window.draw(background_stars_1);
 	window.draw(background_stars_2);
 	window.draw(asteroids_);
+	window.draw(power_ups_);
 	window.draw(enemies_);
 	window.draw(death_animations_);
 	window.draw(player_projectiles_);
